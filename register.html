@@ -73,26 +73,17 @@
           <div class="col-md-6 offset-md-3">
             <div class="register_container">
               <h2>User Registration</h2>
-              <form action="#" method="post">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Name" required="">
-                </div>
-                <div class="form-group">
-                  <input type="tel" class="form-control" placeholder="Contact with country code" required="">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email" required="">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password" required="">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Re-enter Password" required="">
-                </div>
-                <div class="d-flex justify-content-center">
-                  <button type="button">Submit</button>
-                </div>
-              </form>
+              <!-- register.html -->
+
+<form action="/register" method="post">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="contact" placeholder="Contact" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <!-- Add more fields as needed -->
+    <button type="submit">Register</button>
+</form>
+
             </div>
           </div>
         </div>
