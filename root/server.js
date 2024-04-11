@@ -2,7 +2,6 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -21,41 +20,32 @@ mongoose.connect(mongoUrl, {
     console.error('MongoDB connection error:', err);
 });
 
-const MongoClient = mongodb.MongoClient;
+// Import the User model
+const User = require('./userModel');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Handle POST request from register.html form
 app.post('/register', (req, res) => {
-    const userData = {
+    // Create a new User instance with the data from the request body
+    const newUser = new User({
         name: req.body.name,
         contact: req.body.contact,
         email: req.body.email,
         password: req.body.password,
         // Add more fields as needed
-    };
-
-    // Connect to MongoDB
-    MongoClient.connect(mongoUrl, (err, client) => {
-        if (err) throw err;
-
-        // Access the database
-        const db = client.db('Users');
-
-        // Access the collection
-        const collection = db.collection('Users');
-
-        // Insert user data into the collection
-        collection.insertOne(userData, (err, result) => {
-            if (err) {
-                res.send('Error registering user');
-            } else {
-                res.send('User registered successfully');
-            }
-            client.close();
-        });
     });
+
+    // Save the user to the database
+    newUser.save()
+        .then(() => {
+            res.send('User registered successfully');
+        })
+        .catch(err => {
+            res.status(400).send('Error registering user');
+            console.error('Error registering user:', err);
+        });
 });
 
 // Start the server
