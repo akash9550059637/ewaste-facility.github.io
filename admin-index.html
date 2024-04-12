@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - RECYCLE</title>
+  <!-- Bootstrap CSS -->
+  <link href="bootstrap.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="style.css" rel="stylesheet">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    .box {
+      overflow-y: auto;
+      max-height: 300px; /* Adjust as needed */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Section -->
+  <header class="header_section">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <!-- Navbar Content -->
+        <a class="navbar-brand" href="#">
+          <img src="logo.png" alt="">
+          <span>RECYCLE</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="s-1"> </span>
+          <span class="s-2"> </span>
+          <span class="s-3"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <!-- Navbar Links -->
+            <li class="nav-item">
+              <a class="nav-link" href="#requests">Requests</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#facility-details">Facility Details</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#schedule-picks">Schedule Picks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#update-status">Update Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#profile-view">Profile View</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header Section -->
+
+  <!-- Main Content Section -->
+  <main class="container">
+    <div class="row">
+      <!-- Requests Section -->
+      <div id="requests" class="col-md-6 mt-4">
+        <h2>Requests</h2>
+        <!-- Display requests made by users -->
+        <div class="box">
+          <div class="request-list">
+            <!-- Request List -->
+            <p>Request 1</p>
+            <p>Request 2</p>
+            <p>Request 3</p>
+            <!-- Example data -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Facility Details Section -->
+      <div id="facility-details" class="col-md-6 mt-4">
+        <h2>Facility Details</h2>
+        <!-- Display facility details -->
+        <div class="box">
+          <div class="facility-details">
+            <!-- Facility Details Content -->
+            <p>Facility Name: ABC Recycling</p>
+            <p>Contact: abc@example.com</p>
+            <p>Location: XYZ Street</p>
+            <!-- Example data -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule Picks Section -->
+      <div id="schedule-picks" class="col-md-6 mt-4">
+        <h2>Schedule Picks</h2>
+        <!-- Form to schedule picks -->
+        <div class="box">
+          <form id="schedule-form">
+            <!-- Input fields for scheduling picks -->
+            <div class="form-group">
+              <label for="date">Date:</label>
+              <input type="date" class="form-control" id="date">
+            </div>
+            <div class="form-group">
+              <label for="time">Time:</label>
+              <input type="time" class="form-control" id="time">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Schedule Pick</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Update Status Section -->
+      <div id="update-status" class="col-md-6 mt-4">
+        <h2>Update Status</h2>
+        <!-- Form to update status -->
+        <div class="box">
+          <form id="update-status-form">
+            <!-- Input fields for updating status -->
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <input type="text" class="form-control" id="status" placeholder="Enter status">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Update</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Profile View Section -->
+      <div id="profile-view" class="col-md-12 mt-4">
+        <h2>Profile View</h2>
+        <!-- Display user profile information -->
+        <div class="box">
+          <div class="profile-details">
+            <!-- Profile Details Content -->
+            <p>Name: John Doe</p>
+            <p>Email: john@example.com</p>
+            <p>Phone: 1234567890</p>
+            <!-- Example data -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- End Main Content Section -->
+
+  <!-- Footer Section -->
+  <footer class="container-fluid footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-md-9 mx-auto">
+          <p>
+            &copy; 2024 All Rights Reserved By
+            <a href="https://html.design/">Free Html Templates</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer Section -->
+
+  <!-- Bootstrap JS -->
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="bootstrap.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Custom Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
