@@ -6,10 +6,10 @@ const mongoose = require('mongoose');
 
 const app = express();
 const port = process.env.PORT || 3001;
-const mongoUrl = 'mongodb://localhost:27017/Users';
+const mongoUrl = 'mongodb://127.0.0.1:27017/Users'; // Updated MongoDB connection URL to use IPv4 localhost
 
 // MongoDB connection
-mongoose.connect(mongoUrl)
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }) // Added options for useNewUrlParser and useUnifiedTopology
 .then(() => {
     console.log('MongoDB connected');
 })
@@ -41,34 +41,32 @@ app.post('/register',(req, res) => {
     newUser.save()
         .then(() => {
             // Respond with a success message
-            res.send('User registered successfully');
-            res.status(201);
+            res.status(201).send('User registered successfully'); // Changed order of setting status and sending response
         })
         .catch(err => {
             // Respond with an error message
-            res.status(400).send('Error registering user');
-            res.send('Error registering user:', err);
             console.log(err);
+            res.status(400).send('Error registering user: ' + err); // Modified error message to include actual error
         });
 });
 
 app.post("/login",(req,res)=>{
     User.findOne({email:req.body.email}).then(user=>{
-        if(user.password===req.body.password){
+        if(user && user.password === req.body.password){ // Added check for existence of user object
             res.status(200).json(user);
         }
         else{
-            res.send("Incorrect credentials").status(401);
+            res.status(401).send("Incorrect credentials"); // Changed order of setting status and sending response
         }
     }).catch(err=>{
-        res.send("server error")
-        console.log(err);    
+        console.log(err);
+        res.status(500).send("Server error"); // Changed order of setting status and sending response
     });
-})
+});
 
 app.get("/users",(req,res)=>{
     User.find().then(users => res.status(200).json(users));
-})
+});
 
 // Start the server
 app.listen(port, () => {
