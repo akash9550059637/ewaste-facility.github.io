@@ -113,10 +113,3 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
-app.get("/admins", (req, res) => {
-    Admin.find().then(admins => res.status(200).json(admins))
-    .catch(err => {
-        console.error(err);
-        res.status(500).send("Server error");
-    });
-});
