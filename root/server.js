@@ -113,3 +113,11 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
+app.get("/admins",(req,res)=>{
+    Admin.find().then(admins => res.status(200).json(admins));
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
