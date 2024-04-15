@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -76,45 +74,50 @@ app.post('/admin/register', (req, res) => {
         });
 });
 
-app.post("/login",(req,res)=>{
-    User.findOne({email:req.body.email}).then(user=>{
-        if(user && user.password === req.body.password){
+// Handle POST request for user login
+app.post("/login", (req, res) => {
+    User.findOne({ email: req.body.email }).then(user => {
+        if (user && user.password === req.body.password) {
             res.status(200).json(user);
-        }
-        else{
+        } else {
             res.status(401).send("Incorrect credentials");
         }
-    }).catch(err=>{
+    }).catch(err => {
         console.error(err);
         res.status(500).send("Server error");
     });
 });
 
-app.post("/admin/login",(req,res)=>{
-    Admin.findOne({email:req.body.email}).then(admin=>{
-        if(admin && admin.password === req.body.password){
+// Handle POST request for admin login
+app.post("/admin/login", (req, res) => {
+    Admin.findOne({ email: req.body.email }).then(admin => {
+        if (admin && admin.password === req.body.password) {
             res.status(200).json(admin);
-        }
-        else{
+        } else {
             res.status(401).send("Incorrect credentials");
         }
-    }).catch(err=>{
+    }).catch(err => {
         console.error(err);
         res.status(500).send("Server error");
     });
 });
 
-app.get("/users",(req,res)=>{
-    User.find().then(users => res.status(200).json(users));
+// Handle GET request to retrieve all users
+app.get("/users", (req, res) => {
+    User.find().then(users => res.status(200).json(users))
+    .catch(err => {
+        console.error(err);
+        res.status(500).send("Server error");
+    });
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
-
-app.get("/admins",(req,res)=>{
-    Admin.find().then(admins => res.status(200).json(admins));
+// Handle GET request to retrieve all admins
+app.get("/admins", (req, res) => {
+    Admin.find().then(admins => res.status(200).json(admins))
+    .catch(err => {
+        console.error(err);
+        res.status(500).send("Server error");
+    });
 });
 
 // Start the server
