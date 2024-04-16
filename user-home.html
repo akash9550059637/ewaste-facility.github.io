@@ -1,576 +1,498 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<!-- Add this script tag in the head section of your HTML file -->
-<script src="script.js"></script>
+    <meta charset="utf-8">
+    <title>User Home Page</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-  <title>Recycle</title>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="responsive.css" rel="stylesheet" />
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
-            <img src=" logo.png" alt="">
-            <span>
-             RECYCLE
-            </span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="s-1"> </span>
-            <span class="s-2"> </span>
-            <span class="s-3"> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="service.html"> Service </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="blog.html"> Blog </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact </a>
-                </li>
-              </ul>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section ">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ">
-            <div class="detail_box">
-              <h1>
-                E-waste <br>
-                Facility <br>
-                Locator
-              </h1>
-              <p>
-                Turning Trash into Treasure: Join the E-waste Revolution!
-                ♻️🔧 Embrace a Sustainable Future by Recycling Electronic Waste Today.
-              </p>
-              <a href="contact.html" class="">
-                Contact Us
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-6 offset-lg-1">
-            <div class="img_content">
-              <div class="img_container">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="img-box">
-                        <img src=" slider-img.jpg" alt="">
-                      </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="logo.png" alt="Icon" style="width: 30px; height: 30px;">
                     </div>
-                    <div class="carousel-item">
-                      <div class="img-box">
-                        <img src=" slider-img.jpg" alt="">
-                      </div>
+                    <h1 class="m-0 text-primary">Hello! User</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="#section1" class="nav-item nav-link active">Home</a>
+                        <a href="#section2" class="nav-item nav-link">About</a>
+                        <div class="nav-item dropdown">
+                            <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Recycle</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="pop-up1.html" class="dropdown-item">REQUEST PICK-UP</a>
+                                <a href="#section3" class="dropdown-item">ESTIMATE REWARDS</a>
+                                <a href="#section3" class="dropdown-item">VIEW PICK-UPS</a>
+                            </div>
+                        </div>
+                        <div class="navbar-nav ms-auto">
+                            <a href="#section4" class="nav-item nav-link ">Orders</a>
+                            <a href="#section5" class="nav-item nav-link">Rewards</a>
+                            <a href="#section6" class="nav-item nav-link">Contact</a>
+                            <a href="#section7" class="nav-item nav-link">logout</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="carousel-item">
-                      <div class="img-box">
-                        <img src=" slider-img.jpg" alt="">
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="sr-only">Next</span>
-              </a>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Header Start -->
+        
+        <div id="section1" class="container-fluid header bg-white p-0">
+            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+                <div class="col-md-6 p-5 mt-lg-5">
+                    <h1 class="display-5 animated fadeIn mb-4">Join us <span class="text-primary"></span>to make e-waste recycling easy</h1>
+                    <p class="animated fadeIn mb-4 pb-2"> let's turn your old gadgets into green energy!
+                         Responsible e-waste recycling made easy, because saving the planet starts with us.</p>
+                    <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Get Started</a>
+                </div>
+                <div class="col-md-6 animated fadeIn">
+                    <div class="owl-carousel header-carousel">
+                        <div class="owl-carousel-item">
+                            <img class="img-fluid" src="recycle1.jpg" alt="">
+                        </div>
+                        <div class="owl-carousel-item">
+                            <img class="img-fluid" src="recycle3.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
-
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- end slider section -->
-  </div>
+        <!-- Header End -->
 
 
-<!-- Map Container-->
-    
-	
-	<!-- Include Leaflet CSS -->
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-<!-- Your existing HTML content ... -->
-
-<!-- Map Section -->
-<section id="mapSection" style="display: flex; justify-content: center; align-items: center; padding: 10px;">
-  <div id="map" style="height: 500px; width: 500px; border-radius: 50%; overflow: hidden;"></div>
-  <button id="locateBtn" style="margin-left: 20px; padding: 8px; cursor: pointer;" onclick="locateUser()">Locate</button>
-  </section>
-
-<!-- Include Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<!-- Custom script -->
-<script>
-  var map = L.map('map').setView([0, 0], 13);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
-
-  function locateUser() {
-    map.locate({ setView: true, maxZoom: 15 });
-  }
-
-  map.on('locationfound', function (e) {
-    var circle = L.circle(e.latlng, {
-      color: 'blue',
-      fillColor: '#3186cc',
-      fillOpacity: 0.5,
-      radius: 1,
-    }).addTo(map);
-
-    var marker = L.marker(e.latlng).addTo(map);
-    marker.bindPopup('You are here!').openPopup();
-  });
-
-  map.on('locationerror', function (e) {
-    alert("Location access denied or not available.");
-  });
-</script>
-
-
-  <!-- service section -->
-  <section class="service_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Our Services
-        </h2>
-        <img src=" plug.png" alt="">
-      </div>
-
-      <div class="service_container">
-        <div class="box">
-          <div class="img-box">
-            <img src=" s1.png" class="img1" alt="">
-          </div>
-          <div class="detail-box">
-		  <!--New code to change the Recycle element to a button-->
- 		  <div class="btn-box">
-          <button data-toggle="modal" data-target="#recycleModal">Recycle</button>
-          </div>
-            <p>
-              Reduce, reuse, recycle: a simple line with a big impact on our planet.
-            </p>
-          </div>
+        <!-- Search Start -->
+        <div id="section3" class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+            <div class="container">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select border-0 py-3">
+                                    <option selected>Property Type</option>
+                                    <option value="1">Property Type 1</option>
+                                    <option value="2">Property Type 2</option>
+                                    <option value="3">Property Type 3</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select border-0 py-3">
+                                    <option selected>Location</option>
+                                    <option value="1">Location 1</option>
+                                    <option value="2">Location 2</option>
+                                    <option value="3">Location 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+                    </div>
+                </div>
+            </div>
         </div>
-		
-        <div class="box active">
-          <div class="img-box">
-            <img src=" s2.png" class="img1" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-            <a class="nav-link" href="Educate.html"> Educate </a>
-            </h5>
-            <p>
-               Empower minds, nurture the Earth: Recycle, educate, create a sustainable future. 
-            </p>
-          </div>
+        <!-- Search End -->
+
+
+        <!-- Category Start -->
+        <div id="section3.1" class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">EDUCATE</h1>
+                    <p>Learn about various harmful materials in electronic gadgets</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="Laptop.jpg" alt="Icon">
+                                </div>
+                                <h6>Laptop</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="smartphone.jpg" alt="Icon">
+                                </div>
+                                <h6>Smart Phone</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="computer.jpg" alt="Icon">
+                                </div>
+                                <h6>Computer</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="battery.png" alt="Icon">
+                                </div>
+                                <h6>Rechargeable Batteries </h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="lcd.png" alt="Icon">
+                                </div>
+                                <h6>LCD Screens</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="fridge.png" alt="Icon">
+                                </div>
+                                <h6>Refrigerators and Air Conditioners</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="old..jpg" alt="Icon">
+                                </div>
+                                <h6>Older Electronics</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    <img class="img-fluid" src="tv.png" alt="Icon">
+                                </div>
+                                <h6>Monitors and TVs</h6>
+                                
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box">
-          <div class="img-box">
-            <img src=" s3.png" class="img1" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Eco-Volunteer
-            </h5>
-            <p>
-              Join the green team, be an eco-volunteer, and together we'll recycle for a brighter, sustainable future.
-            </p>
-          </div>
+        <!-- Category End -->
+
+
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                            <img class="img-fluid w-100" src="img/about.jpg">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <h1 class="mb-4">#1 Place To Find The Perfect Property</h1>
+                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Clita duo justo magna dolore erat amet</p>
+                        <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box ">
-          <div class="img-box">
-            <img src=" s4.png" class="img1" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Rewards
-            </h5>
-            <p>
-              Recycle today, reap rewards tomorrow – for a greener planet and a brighter future.
-            </p>
-          </div>
+        <!-- About End -->
+
+
+
+        <!-- Call to Action Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded p-3">
+                    <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <img class="img-fluid rounded w-100" src="img/call-to-action.jpg" alt="">
+                            </div>
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="mb-4">
+                                    <h1 class="mb-3">Contact With Our Certified Agent</h1>
+                                    <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit diam justo sed vero dolor duo.</p>
+                                </div>
+                                <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                                <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box">
-          <div class="img-box">
-            <img src=" s5.png" class="img1" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Electrical Wiring
-            </h5>
-            <p>
-              There are many variations of passages of Lorem Ipsum available,
-            </p>
-          </div>
+        <!-- Call to Action End -->
+
+
+        <!-- Team Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Property Agents</h1>
+                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/team-1.jpg" alt="">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Full Name</h5>
+                                <small>Designation</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/team-2.jpg" alt="">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Full Name</h5>
+                                <small>Designation</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/team-3.jpg" alt="">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Full Name</h5>
+                                <small>Designation</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="team-item rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="img/team-4.jpg" alt="">
+                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 mt-3">
+                                <h5 class="fw-bold mb-0">Full Name</h5>
+                                <small>Designation</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          Read More
-        </a>
-      </div>
+        <!-- Team End -->
+
+
+        <!-- Testimonial Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Our Clients Say!</h1>
+                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="testimonial-item bg-light rounded p-3">
+                        <div class="bg-white border rounded p-4">
+                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-1.jpg" style="width: 45px; height: 45px;">
+                                <div class="ps-3">
+                                    <h6 class="fw-bold mb-1">Client Name</h6>
+                                    <small>Profession</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-light rounded p-3">
+                        <div class="bg-white border rounded p-4">
+                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-2.jpg" style="width: 45px; height: 45px;">
+                                <div class="ps-3">
+                                    <h6 class="fw-bold mb-1">Client Name</h6>
+                                    <small>Profession</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-light rounded p-3">
+                        <div class="bg-white border rounded p-4">
+                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-3.jpg" style="width: 45px; height: 45px;">
+                                <div class="ps-3">
+                                    <h6 class="fw-bold mb-1">Client Name</h6>
+                                    <small>Profession</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+        
+
+        <!-- Footer Start -->
+        <div id="section6"class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4">For any queries</h5>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>E-waste recycling centre</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 678 90</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>disposalcentre@gmail.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4">Quick Links</h5>
+                        <a class="btn btn-link text-white-50" href="">About Us</a>
+                        <a class="btn btn-link text-white-50" href="">Contact Us</a>
+                        <a class="btn btn-link text-white-50" href="">Our Services</a>
+                        <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
+                        <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4">Newsletter</h5>
+                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                        <div class="position-relative mx-auto" style="max-width: 400px;">
+                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-  </section>
-  <!-- end service section -->
 
-  <!-- about section -->
-  <section class="about_section layout_padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-                About Us
-              </h2>
-              <img src=" plug.png" alt="">
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-              in reprehenderit in voluptate velit
-            </p>
-            <a href="">
-              Read More
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="img_container">
-            <div class="img-box b1">
-              <img src=" about-img1.jpg" alt="" />
-            </div>
-            <div class="img-box b2">
-              <img src=" about-img2.jpg" alt="" />
-            </div>
-          </div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- end about section -->
-
-
-
-
-  <!-- blog section -->
-
-  <section class="blog_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Blog
-        </h2>
-        <img src=" plug.png" alt="">
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src=" blog1.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Blog Title Goes Here
-              </h5>
-              <p>
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src=" blog2.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Blog Title Goes Here
-              </h5>
-              <p>
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end blog section -->
-  
-
-  <!-- contact section -->
-
-  <section class="contact_section layout_padding">
-    <div class="container ">
-      <div class="heading_container">
-        <h2>
-          Contact Us
-        </h2>
-        <img src=" plug.png" alt="">
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form action="">
-            <div>
-              <input type="text" placeholder="Name" />
-            </div>
-            <div>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div>
-              <input type="text" placeholder="Phone Number" />
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Message" />
-            </div>
-            <div class="d-flex ">
-              <button>
-                SEND
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-6">
-          <div class="map_container">
-            <div class="map-responsive">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.43185121691!2d78.31951427528762!3d17.39105098349685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb94ebf56f09a7%3A0xf748e727e9b5122c!2sMahatma%20Gandhi%20Institute%20of%20Technology%20(MGIT)!5e0!3m2!1sen!2sin!4v1708493394217!5m2!1sen!2sin" width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end contact section -->
-
-
-  <!-- info section -->
-
-  <section class="info_section layout_padding">
-    <div class="container">
-      <div class="info_contact">
-        <div class="row">
-          <div class="col-md-4">
-            <a href="">
-              <img src=" location-white.png" alt="">
-              <span>
-                Passages of Lorem Ipsum available
-              </span>
-            </a>
-          </div>
-          <div class="col-md-4">
-            <a href="">
-              <img src=" telephone-white.png" alt="">
-              <span>
-                Call : +012334567890
-              </span>
-            </a>
-          </div>
-          <div class="col-md-4">
-            <a href="">
-              <img src=" envelope-white.png" alt="">
-              <span>
-                demo@gmail.com
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8 col-lg-9">
-          <div class="info_form">
-            <form action="">
-              <input type="text" placeholder="Enter your email">
-              <button>
-                subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3">
-          <div class="info_social">
-            <div>
-              <a href="">
-                <img src=" fb.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src=" twitter.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src=" linkedin.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src=" instagram.png" alt="">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- end info section -->
-
-  <!-- footer section -->
-  <footer class="container-fluid footer_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7 col-md-9 mx-auto">
-          <p>
-            &copy; 2019 All Rights Reserved By
-            <a href="https://html.design/">Free Html Templates</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- footer section -->
-
-
-  <script src="jquery-3.4.1.min.js"></script>
-  <script src="bootstrap.js"></script>
-  
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-
-
-<!-- Recycle pop up--><!-- Recycle pop up--><!-- Recycle pop up--><!-- Recycle pop up--><!-- Recycle pop up-->
-<!-- Modal -->
-<div class="modal fade" id="recycleModal" tabindex="-1" role="dialog" aria-labelledby="recycleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="recycleModalLabel">Recycle Information</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Form for Recycle Popup -->
-        <form>
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name">
-          </div>
-          <div class="form-group">
-            <label for="contact">Contact:</label>
-            <input type="text" class="form-control" id="contact" placeholder="Enter your contact number">
-          </div>
-          <button type="button" class="btn btn-primary" onclick="locateUser()">Locate User</button>
-          <!-- Add latitude and longitude display fields here if needed -->
-          <div class="form-group">
-            <label for="eWasteType">Type of E-Waste:</label>
-            <input type="text" class="form-control" id="eWasteType" placeholder="Enter type of e-waste">
-          </div>
-          <button type="button" class="btn btn-success" onclick="submitRecycleInfo()">Submit</button>
-        </form>
-        <!-- End Form -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // ... Your existing Leaflet map and related code ...
-
-	 
-  // Function to locate the user on the map
-  function locateUser() {
-    map.locate({ setView: true, maxZoom: 15 });
-  }
-
-  // Function to submit recycle information (you can modify this function as needed)
-  function submitRecycleInfo() {
-    var name = document.getElementById('name').value;
-    var contact = document.getElementById('contact').value;
-    var eWasteType = document.getElementById('eWasteType').value;
-    
-    // You can use the retrieved data as needed, for example, send it to a server
-    // and perform further actions.
-    
-    // Reset the form fields after submission if needed.
-    document.getElementById('name').value = '';
-    document.getElementById('contact').value = '';
-    document.getElementById('eWasteType').value = '';
-
-    // Close the modal after submission
-    $('#recycleModal').modal('hide');
-  }
-</script>
-
-<!-- Recycle pop up--><!-- Recycle pop up--><!-- Recycle pop up--><!-- Recycle pop up--><!-- Recycle pop up-->
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>
