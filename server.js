@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path'); // Import path module
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -20,11 +22,37 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 const User = require('./userModel');
 const Admin = require('./adminModel');
 
+// Configure body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Serve static files (for example, register.html)
 app.use(express.static('public'));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Serialize user
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+// Deserialize user
+passport.deserializeUser((id, done) => {
+    const user = users.find(user => user.id === id);
+    done(null, user);
+});
+
+// Configure local strategy for authentication
+passport.use(new LocalStrategy((username, password, done) => {
+    User.findOne({ email: username }, (err, user) => {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false, { message: 'Incorrect username.' }); }
+        if (user.password !== password) { return done(null, false, { message: 'Incorrect password.' }); }
+        return done(null, user);
+    });
+}));
 
 // Handle POST request from register.html form for user registration
 app.post('/register', (req, res) => {
@@ -48,18 +76,11 @@ app.post('/register', (req, res) => {
 });
 
 // Handle POST request for user login
-app.post("/login", (req, res) => {
-    User.findOne({ email: req.body.email }).then(user => {
-        if (user && user.password === req.body.password) {
-            res.status(200).json(user);
-        } else {
-            res.status(401).send("Incorrect credentials");
-        }
-    }).catch(err => {
-        console.error(err);
-        res.status(500).send("Server error");
-    });
-});
+app.post("/login", passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
 
 // Handle POST request from admin-register.html form for admin registration
 app.post('/admin/register', (req, res) => {
@@ -85,19 +106,11 @@ app.post('/admin/register', (req, res) => {
 });
 
 // Handle POST request for admin login
-app.post("/admin/login", (req, res) => {
-    Admin.findOne({ email: req.body.email }).then(admin => {
-        if (admin && admin.password === req.body.password) {
-            // Redirect to admin-index.html after successful login
-            res.redirect('https://akash9550059637.github.io/ewaste-facility.github.io/admin-index.html');
-        } else {
-            res.status(401).send("Incorrect credentials");
-        }
-    }).catch(err => {
-        console.error(err);
-        res.status(500).send("Server error");
-    });
-});
+app.post("/admin/login", passport.authenticate('local', {
+    successRedirect: 'https://akash9550059637.github.io/ewaste-facility.github.io/admin-index.html',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
 
 // Handle GET request to retrieve all users
 app.get("/users", (req, res) => {
