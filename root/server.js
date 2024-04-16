@@ -1,23 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path'); // Import path module
 
 const app = express();
 const port = process.env.PORT || 3001;
-const mongoUrl = 'mongodb://127.0.0.1:27017/Users'; // Updated MongoDB connection URL to use IPv4 localhost
+const mongoUrl = 'mongodb://127.0.0.1:27017/Users';
 
 // MongoDB connection
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }) // Added options for useNewUrlParser and useUnifiedTopology
-.then(() => {
-    console.log('MongoDB connected');
-})
-.catch(err => {
-    console.error('MongoDB connection error:', err);
-});
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('MongoDB connected');
+    })
+    .catch(err => {
+        console.error('MongoDB connection error:', err);
+    });
 
 // Import the User and Admin models
 const User = require('./userModel');
-const Admin = require('./adminModel'); // Importing the Admin model
+const Admin = require('./adminModel');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -33,44 +34,16 @@ app.post('/register', (req, res) => {
         contact: req.body.contact,
         email: req.body.email,
         password: req.body.password,
-        // Add more fields as needed
     });
 
     // Save the user to the database
     newUser.save()
         .then(() => {
-            // Respond with a success message
             res.status(201).send('User registered successfully');
         })
         .catch(err => {
-            // Respond with an error message
             console.error(err);
             res.status(400).send('Error registering user: ' + err);
-        });
-});
-
-// Handle POST request from admin-register.html form for admin registration
-app.post('/admin/register', (req, res) => {
-    // Create a new Admin instance with the data from the request body
-    const newAdmin = new Admin({
-        adminName: req.body.adminName,
-        contact: req.body.contact,
-        email: req.body.email,
-        facilityName: req.body.facilityName,
-        password: req.body.password,
-        // Add more fields as needed
-    });
-
-    // Save the admin to the database
-    newAdmin.save()
-        .then(() => {
-            // Respond with a success message
-            res.status(201).send('Admin registered successfully');
-        })
-        .catch(err => {
-            // Respond with an error message
-            console.error(err);
-            res.status(400).send('Error registering admin: ' + err);
         });
 });
 
@@ -88,11 +61,35 @@ app.post("/login", (req, res) => {
     });
 });
 
+// Handle POST request from admin-register.html form for admin registration
+app.post('/admin/register', (req, res) => {
+    // Create a new Admin instance with the data from the request body
+    const newAdmin = new Admin({
+        adminName: req.body.adminName,
+        contact: req.body.contact,
+        email: req.body.email,
+        facilityName: req.body.facilityName,
+        password: req.body.password,
+    });
+
+    // Save the admin to the database
+    newAdmin.save()
+        .then(() => {
+            // Redirect to admin-index.html after successful registration
+            res.redirect('/admin-index.html');
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(400).send('Error registering admin: ' + err);
+        });
+});
+
 // Handle POST request for admin login
 app.post("/admin/login", (req, res) => {
     Admin.findOne({ email: req.body.email }).then(admin => {
         if (admin && admin.password === req.body.password) {
-            res.status(200).json(admin);
+            // Redirect to admin-index.html after successful login
+            res.redirect('/admin-index.html');
         } else {
             res.status(401).send("Incorrect credentials");
         }
@@ -105,19 +102,19 @@ app.post("/admin/login", (req, res) => {
 // Handle GET request to retrieve all users
 app.get("/users", (req, res) => {
     User.find().then(users => res.status(200).json(users))
-    .catch(err => {
-        console.error(err);
-        res.status(500).send("Server error");
-    });
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Server error");
+        });
 });
 
 // Handle GET request to retrieve all admins
 app.get("/admins", (req, res) => {
     Admin.find().then(admins => res.status(200).json(admins))
-    .catch(err => {
-        console.error(err);
-        res.status(500).send("Server error");
-    });
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Server error");
+        });
 });
 
 // Start the server
