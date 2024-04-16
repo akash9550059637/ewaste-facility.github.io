@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Serve static files (for example, register.html)
-app.use(express.static('C:/Users/Akash/OneDrive/Desktop/Project'));
+app.use(express.static('public'));
 
 // Handle POST request from register.html form for user registration
 app.post('/register', (req, res) => {
@@ -109,31 +109,13 @@ app.get("/users", (req, res) => {
 });
 
 // Handle GET request to retrieve all admins
-const path = require('path');
-
-// Route for serving admin index page
-app.get("/admin-index.html", (req, res) => {
-    // Construct the absolute path to admin-index.html based on the directory structure
-    const indexPath = path.join('C:/Users/Akash/OneDrive/Desktop/Project', 'ewaste-facility.github.io', 'admin-index.html');
-    // Send the file as a response
-    res.sendFile(indexPath);
-});
-
-// Route for retrieving all admins
 app.get("/admins", (req, res) => {
-    // Find all admins in the database
-    Admin.find()
-        .then(admins => {
-            // Send the admins as JSON response
-            res.status(200).json(admins);
-        })
+    Admin.find().then(admins => res.status(200).json(admins))
         .catch(err => {
-            // Handle errors
             console.error(err);
             res.status(500).send("Server error");
         });
 });
-
 
 // Start the server
 app.listen(port, () => {
