@@ -76,7 +76,7 @@ app.post('/admin/register', (req, res) => {
     newAdmin.save()
         .then(() => {
             // Redirect to admin-index.html after successful registration
-            res.redirect('/admin-index.html');
+            res.redirect('https://akash9550059637.github.io/ewaste-facility.github.io/admin-index.html');
         })
         .catch(err => {
             console.error(err);
