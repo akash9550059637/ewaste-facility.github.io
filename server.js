@@ -89,7 +89,7 @@ app.post("/admin/login", (req, res) => {
     Admin.findOne({ email: req.body.email }).then(admin => {
         if (admin && admin.password === req.body.password) {
             // Redirect to admin-index.html after successful login
-            res.redirect('/admin-index.html');
+            res.redirect('https://akash9550059637.github.io/ewaste-facility.github.io/admin-index.html');
         } else {
             res.status(401).send("Incorrect credentials");
         }
