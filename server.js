@@ -39,7 +39,8 @@ app.post('/register', (req, res) => {
     // Save the user to the database
     newUser.save()
         .then(() => {
-            res.status(201).send('User registered successfully');
+           // Redirect to user-home.html after successful registration
+            res.redirect('https://akash9550059637.github.io/ewaste-facility.github.io/user-home.html');
         })
         .catch(err => {
             console.error(err);
