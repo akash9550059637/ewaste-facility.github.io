@@ -51,7 +51,7 @@ app.post('/register', (req, res) => {
 app.post("/login", (req, res) => {
     User.findOne({ email: req.body.email }).then(user => {
         if (user && user.password === req.body.password) {
-            res.status(200).json(user);
+            res.redirect('https://akash9550059637.github.io/ewaste-facility.github.io/user-home.html');
         } else {
             res.status(401).send("Incorrect credentials");
         }
