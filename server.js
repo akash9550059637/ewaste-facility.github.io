@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path'); // Import path module
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -19,6 +20,22 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 // Import the User and Admin models
 const User = require('./userModel');
 const Admin = require('./adminModel');
+
+// Middleware to verify JWT token
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    jwt.verify(token, 'secret_key', (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        req.userId = decoded.userId;
+        next();
+    });
+};
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -49,9 +66,12 @@ app.post('/register', (req, res) => {
 });
 
 // Handle POST request for user login
+
 app.post("/login", (req, res) => {
     User.findOne({ email: req.body.email }).then(user => {
         if (user && user.password === req.body.password) {
+            const token = jwt.sign({ userId: user._id }, 'secret_key');
+            res.header('Authorization', token);
             res.redirect('https://akash9550059637.github.io/ewaste-facility.github.io/user-home.html');
         } else {
             res.status(401).send("Incorrect credentials");
@@ -61,6 +81,7 @@ app.post("/login", (req, res) => {
         res.status(500).send("Server error");
     });
 });
+
 
 // Handle POST request from admin-register.html form for admin registration
 app.post('/admin/register', (req, res) => {
@@ -117,6 +138,23 @@ app.get("/admins", (req, res) => {
             res.status(500).send("Server error");
         });
 });
+
+// Handle GET request to retrieve user-specific data
+app.get("/user-data", verifyToken, (req, res) => {
+    User.findById(req.userId)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            // Send user-specific data from the database
+            res.status(200).json(user);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Server error");
+        });
+});
+
 
 // Start the server
 app.listen(port, () => {

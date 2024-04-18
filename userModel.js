@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    userData: {
+        type: mongoose.Schema.Types.Mixed // This can be an object or any other data structure you need
     }
 });
 

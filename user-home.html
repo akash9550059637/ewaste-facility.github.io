@@ -29,6 +29,12 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script>
+        window.addEventListener('popstate', function(event) {
+            history.pushState(null, null, window.location.href); // Update browser history
+            location.reload(true); // Reload the page when the back button is clicked
+        });
+    </script>
 </head>
 
 <body>
@@ -493,6 +499,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+      
 </body>
 
 </html>
