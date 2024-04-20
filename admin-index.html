@@ -62,10 +62,39 @@
       padding: 10px 20px;
       cursor: pointer;
     }
+	
+	/* Overlay style */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  z-index: 999; /* Ensure the overlay is on top of everything */
+}
+
+/* Popup style */
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure the popup is on top of the overlay */
+}
+
   </style>
 </head>
 
 <body>
+<div class="overlay"></div>
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
@@ -146,7 +175,7 @@ your dedication to sustainability not only saves the environment, but also shape
   <section id="services" class="feature_section">
     <div class="container">
       <div class="feature_container">
-        <div class="box">
+        <div class="box" id = "facilityLabel">
           <div class="img-box">
             <svg enable-background="new 0 0 511.995 511.995" height="512" viewBox="0 0 511.995 511.995" width="512" xmlns="http://www.w3.org/2000/svg">
               <g>
@@ -159,36 +188,11 @@ your dedication to sustainability not only saves the environment, but also shape
               </g>
             </svg>
           </div>
-          <h5 class="name" id="facilityLabel">
+          <h5 class="name" id="facilityLabel_">
             Add/Update facility details
           </h5>
         </div>
-        
-        <div id="popup">
-          <button class="close-btn" onclick="closePopup()">Close</button>
-          <h2>Enter Details</h2>
-          <form id="detailsForm">
-            <div>
-              <label for="email">Email:</label>
-              <input type="email" id="email" required>
-            </div>
-            <div>
-              <label for="facility">Facility Details:</label>
-              <input type="text" id="facility" required>
-            </div>
-            <div>
-              <label for="location">Current Location:</label>
-              <input type="text" id="location" disabled>
-              <button type="button" onclick="getLocation()">Get Current Location</button>
-            </div>
-            <div>
-              <label for="additional">Additional Details:</label>
-              <input type="text" id="additional">
-            </div>
-            <button type="submit" id="submitBtn" disabled>Submit</button>
-          </form>
-        </div>
-
+		
         <div class="box active">
           <div class="img-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
@@ -218,6 +222,41 @@ your dedication to sustainability not only saves the environment, but also shape
 
 
   </section>
+  
+  
+<!-- Pop Up content-->
+<div id="popup">
+  <button class="close-btn" onclick="closePopup()">Close</button>
+  <h2>Enter Details</h2>
+  <form id="detailsForm" action="http://localhost:3001/submit-form" method="POST"> <!-- Added form tag with action and method -->
+    <div>
+      <label for="email">Email:</label>
+      <input name="email" type="email" id="email" required>
+    </div>
+    <div>
+      <label for="facility name">Facility Name:</label>
+      <input name="facilityName" type="text" id="facilityname" required>
+    </div>
+    <div>
+      <label for="facility">Facility Details:</label>
+      <input name="facilityDetails" type="text" id="facility" required>
+    </div>
+    <div id="coordinates-container"> <!-- Added an empty container to display coordinates -->
+      <label for="location">Current Location:</label>
+      <input type="text" id="location" disabled>
+    </div>
+    <div>
+      <label for="additional">Additional Details:</label>
+      <input name="additionalDetails" type="text" id="additional">
+    </div>
+    <!-- Replaced the button with id="location" with a button with id="locate-button" -->
+    <button type="button" id="locate-button">Get Current Location</button>
+	<br>
+    <button type="submit" id="submit-button">Submit</button>
+  </form>
+</div>
+
+		
   <!-- end feature section -->
 
 <!-- requests table-->
@@ -281,70 +320,70 @@ your dedication to sustainability not only saves the environment, but also shape
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
   <!-- End Google Map -->
   <script>
+//Locate button functionality
+	
+	document.addEventListener('DOMContentLoaded', function() {
+    const locateButton = document.getElementById('locate-button');
+    const coordinatesContainer = document.getElementById('coordinates-container');
+    const locationInput = document.getElementById('location-input');
+
+    // Function to get user's current location
     function getLocation() {
-      const locationInput = document.getElementById('location');
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          locationInput.value = `Latitude: ${latitude}, Longitude: ${longitude}`;
-        }, function(error) {
-          console.error('Error getting location:', error);
-        });
-      } else {
-        console.error('Geolocation is not supported by this browser.');
-      }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Capture user's latitude and longitude
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                // Show coordinates in the container beside the button
+                coordinatesContainer.textContent = "Latitude: " + latitude + ", Longitude: " + longitude;
+
+                // Update the value of the hidden input field with the coordinates
+                locationInput.value = latitude + "," + longitude;
+            }, function(error) {
+                console.error("Error getting user's location:", error);
+            });
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
     }
-    
-    document.getElementById('detailsForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      console.log('Form submitted!');
-      // Reset form after submission
-      this.reset();
-      document.getElementById('location').value = '';
-      document.getElementById('submitBtn').disabled = true;
+
+    // Event listener for the locate button to get user's location
+    locateButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        getLocation();
     });
+});
     
-    document.getElementById('email').addEventListener('input', toggleSubmitButton);
-    document.getElementById('facility').addEventListener('input', toggleSubmitButton);
-    
-    function toggleSubmitButton() {
-      const emailInput = document.getElementById('email');
-      const facilityInput = document.getElementById('facility');
-      const submitBtn = document.getElementById('submitBtn');
-      if (emailInput.validity.valid && facilityInput.validity.valid) {
-        submitBtn.disabled = false;
-      } else {
-        submitBtn.disabled = true;
-      }
-    }
-    
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-    }
-    
-    // Display the popup when the page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('popup').style.display = 'block';
-    });
     </script>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function () {
-      // Show popup when clicking on the facility box label
-      $("#facilityLabel").click(function () {
-        $("#popup").fadeIn();
-      });
+   $(document).ready(function () {
+  // Show overlay and popup when clicking on the facility box label
+  $("#facilityLabel").click(function () {
+    $(".overlay").fadeIn();
+    $("#popup").fadeIn();
+  });
 
-      // Close popup when clicking outside the popup
-      $(document).mouseup(function (e) {
-        var popup = $("#popup");
-        if (!popup.is(e.target) && popup.has(e.target).length === 0) {
-          popup.fadeOut();
-        }
-      });
-    });
+  // Close popup when clicking outside the popup
+  $(document).mouseup(function (e) {
+    var popup = $("#popup");
+    if (!popup.is(e.target) && popup.has(e.target).length === 0) {
+      $(".overlay").fadeOut();
+      popup.fadeOut();
+    }
+  });
+
+  // Close popup when clicking the close button
+  $(".close-btn").click(function () {
+    $(".overlay").fadeOut();
+    $("#popup").fadeOut();
+  });
+});
+
+
+
   </script>
 
 

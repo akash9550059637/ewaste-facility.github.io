@@ -21,6 +21,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 const User = require('./userModel');
 const Admin = require('./adminModel');
 const Request = require('./Request');
+const facilityModel = require('./facilityModel');
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
@@ -100,6 +101,40 @@ app.post('/EwasteRequest', (req, res) => {
         });
 });
 
+//handle post request to save the faciity details from admin-index.html
+
+app.post('/submit-form', (req, res) => {
+  try {
+    const { email, facilityName, facilityDetails, additionalDetails, location } = req.body;
+    
+    // Extract latitude and longitude from the location string
+    const [latitude, longitude] = location.split(',');
+
+    const facilityEntry = new FacilityModel({
+      email,
+      facilityName,
+      facilityDetails,
+      additionalDetails,
+      location: {
+        type: 'Point',
+        coordinates: [parseFloat(longitude), parseFloat(latitude)]
+      }
+    });
+    
+    facilityEntry.save()
+      .then(savedFacilityEntry => {
+        console.log('E-waste facility has been saved', savedFacilityEntry);
+        res.status(201).send('E-waste facility details request saved successfully');
+      })
+      .catch(error => {
+        console.error('Error saving e-waste request:', error);
+        res.status(500).send('Error saving e-waste request'); // Corrected the status code here
+      });
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    res.status(500).send('Internal server error',error); // Corrected the status code here
+  }
+});
 
 
 
