@@ -25,7 +25,44 @@
   <link href="stylea.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="responsivea.css" rel="stylesheet" />
+  <style>
+    /* Popup style */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 
+    /* Close button style */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      padding: 5px 10px;
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /* Submit button style */
+    #submitBtn {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -122,10 +159,36 @@ your dedication to sustainability not only saves the environment, but also shape
               </g>
             </svg>
           </div>
-          <h5 class="name">
+          <h5 class="name" id="facilityLabel">
             Add/Update facility details
           </h5>
         </div>
+        
+        <div id="popup">
+          <button class="close-btn" onclick="closePopup()">Close</button>
+          <h2>Enter Details</h2>
+          <form id="detailsForm">
+            <div>
+              <label for="email">Email:</label>
+              <input type="email" id="email" required>
+            </div>
+            <div>
+              <label for="facility">Facility Details:</label>
+              <input type="text" id="facility" required>
+            </div>
+            <div>
+              <label for="location">Current Location:</label>
+              <input type="text" id="location" disabled>
+              <button type="button" onclick="getLocation()">Get Current Location</button>
+            </div>
+            <div>
+              <label for="additional">Additional Details:</label>
+              <input type="text" id="additional">
+            </div>
+            <button type="submit" id="submitBtn" disabled>Submit</button>
+          </form>
+        </div>
+
         <div class="box active">
           <div class="img-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
@@ -138,6 +201,7 @@ your dedication to sustainability not only saves the environment, but also shape
             Update availability of material
           </h5>
         </div>
+       
         <div class="box">
           <div class="img-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
@@ -216,6 +280,72 @@ your dedication to sustainability not only saves the environment, but also shape
   <!-- Google Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
   <!-- End Google Map -->
+  <script>
+    function getLocation() {
+      const locationInput = document.getElementById('location');
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          locationInput.value = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        }, function(error) {
+          console.error('Error getting location:', error);
+        });
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+      }
+    }
+    
+    document.getElementById('detailsForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      console.log('Form submitted!');
+      // Reset form after submission
+      this.reset();
+      document.getElementById('location').value = '';
+      document.getElementById('submitBtn').disabled = true;
+    });
+    
+    document.getElementById('email').addEventListener('input', toggleSubmitButton);
+    document.getElementById('facility').addEventListener('input', toggleSubmitButton);
+    
+    function toggleSubmitButton() {
+      const emailInput = document.getElementById('email');
+      const facilityInput = document.getElementById('facility');
+      const submitBtn = document.getElementById('submitBtn');
+      if (emailInput.validity.valid && facilityInput.validity.valid) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    }
+    
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+    
+    // Display the popup when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('popup').style.display = 'block';
+    });
+    </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Show popup when clicking on the facility box label
+      $("#facilityLabel").click(function () {
+        $("#popup").fadeIn();
+      });
+
+      // Close popup when clicking outside the popup
+      $(document).mouseup(function (e) {
+        var popup = $("#popup");
+        if (!popup.is(e.target) && popup.has(e.target).length === 0) {
+          popup.fadeOut();
+        }
+      });
+    });
+  </script>
 
 
 </body>
