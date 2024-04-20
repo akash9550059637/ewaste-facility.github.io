@@ -25,76 +25,104 @@
   <link href="stylea.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="responsivea.css" rel="stylesheet" />
-  <style>
-    /* Popup style */
-    #popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Close button style */
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      padding: 5px 10px;
-      background-color: #f44336;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-    }
-
-    /* Submit button style */
-    #submitBtn {
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-	
-	/* Overlay style */
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
-  z-index: 999; /* Ensure the overlay is on top of everything */
+  
+   <style>
+	 
+	 #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity (last value) as needed */
+    z-index: 9999; /* Ensure the overlay is above other content */
+    display: none; /* Initially hidden */
 }
 
-/* Popup style */
-#popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Ensure the popup is on top of the overlay */
+        #e-waste-popup {
+            width: 400px;
+            height: 400px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            display: none;
+			z-index: 9999;
+        }
+
+        #e-waste-popup h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #e-waste-popup form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #e-waste-popup label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #e-waste-popup select,
+        #e-waste-popup textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #e-waste-popup button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #e-waste-popup button:hover {
+            background-color: #0056b3;
+        }
+
+        #e-waste-popup .map-container {
+            /* Add your map styling here */
+        }
+		
+		
+		.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
 }
 
-  </style>
+.popup.active {
+    display: block;
+}
+
+    </style>
+
 </head>
 
 <body>
-<div class="overlay"></div>
+<div id="overlay"></div>
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
@@ -132,13 +160,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ">
                 <li class="nav-item">
-				<a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#services">Services</a>
                 </li>
-				 <li class="nav-item">
-				<a class="nav-link" href="#services">Logout</a>
+         <li class="nav-item">
+        <a class="nav-link" href="#services">Logout</a>
                 </li>
               </ul>
-			  
+        
             </div>
           </nav>
         </div>
@@ -175,7 +203,7 @@ your dedication to sustainability not only saves the environment, but also shape
   <section id="services" class="feature_section">
     <div class="container">
       <div class="feature_container">
-        <div class="box" id = "facilityLabel">
+        <div id="popup" class="box">
           <div class="img-box">
             <svg enable-background="new 0 0 511.995 511.995" height="512" viewBox="0 0 511.995 511.995" width="512" xmlns="http://www.w3.org/2000/svg">
               <g>
@@ -188,11 +216,10 @@ your dedication to sustainability not only saves the environment, but also shape
               </g>
             </svg>
           </div>
-          <h5 class="name" id="facilityLabel_">
+          <h5 class="name">
             Add/Update facility details
           </h5>
         </div>
-		
         <div class="box active">
           <div class="img-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
@@ -205,7 +232,6 @@ your dedication to sustainability not only saves the environment, but also shape
             Update availability of material
           </h5>
         </div>
-       
         <div class="box">
           <div class="img-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
@@ -222,14 +248,13 @@ your dedication to sustainability not only saves the environment, but also shape
 
 
   </section>
-  
-  
-<!-- Pop Up content-->
-<div id="popup">
-  <button class="close-btn" onclick="closePopup()">Close</button>
-  <h2>Enter Details</h2>
-  <form id="detailsForm" action="http://localhost:3001/submit-form" method="POST"> <!-- Added form tag with action and method -->
-    <div>
+  <!-- end feature section -->
+ 
+ <div id="e-waste-popup">
+    <button id="close-button">Close</button>
+    <h2>Facility Details</h2>
+    <form id="ewaste-form" action="http://localhost:3001/facilityDetails" method="post">
+        <div>
       <label for="email">Email:</label>
       <input name="email" type="email" id="email" required>
     </div>
@@ -241,23 +266,22 @@ your dedication to sustainability not only saves the environment, but also shape
       <label for="facility">Facility Details:</label>
       <input name="facilityDetails" type="text" id="facility" required>
     </div>
-    <div id="coordinates-container"> <!-- Added an empty container to display coordinates -->
-      <label for="location">Current Location:</label>
-      <input type="text" id="location" disabled>
-    </div>
-    <div>
+	<div>
       <label for="additional">Additional Details:</label>
       <input name="additionalDetails" type="text" id="additional">
     </div>
-    <!-- Replaced the button with id="location" with a button with id="locate-button" -->
-    <button type="button" id="locate-button">Get Current Location</button>
-	<br>
-    <button type="submit" id="submit-button">Submit</button>
-  </form>
+        <!-- Hidden input field to store location coordinates -->
+        <input type="hidden" id="location-input" name="location">
+        <button id="locate-button">Locate</button>
+        <br>
+        <div id="coordinates-container"></div>
+        <div class="map-container" id="mapbox-map"></div>
+        <br>
+        <button type="submit" id="submit-button">Submit</button>
+    </form>
 </div>
 
-		
-  <!-- end feature section -->
+
 
 <!-- requests table-->
 
@@ -319,8 +343,48 @@ your dedication to sustainability not only saves the environment, but also shape
   <!-- Google Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
   <!-- End Google Map -->
-  <script>
-//Locate button functionality
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('e-waste-popup');
+
+        // Function to open the pop-up
+        function openPopup() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block'; // Show overlay
+        }
+
+        // Function to close the pop-up
+        function closePopup() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none'; // Hide overlay
+        }
+
+        // Add event listener to open the pop-up when "REQUEST PICK-UP" is clicked
+        document.getElementById('popup').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            openPopup(); // Open the pop-up
+        });
+
+        // Add event listener to close the pop-up when the close button is clicked
+        document.getElementById('close-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior
+            closePopup(); // Close the pop-up
+        });
+
+        // Event listener to close the pop-up when clicking on the overlay
+        overlay.addEventListener('click', function() {
+            closePopup();
+        });
+
+        // Event listener to prevent closing the pop-up when clicking inside the pop-up itself
+        popup.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    });
+	
+	
+	//Locate button functionality
 	
 	document.addEventListener('DOMContentLoaded', function() {
     const locateButton = document.getElementById('locate-button');
@@ -354,38 +418,7 @@ your dedication to sustainability not only saves the environment, but also shape
         getLocation();
     });
 });
-    
-    </script>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-   $(document).ready(function () {
-  // Show overlay and popup when clicking on the facility box label
-  $("#facilityLabel").click(function () {
-    $(".overlay").fadeIn();
-    $("#popup").fadeIn();
-  });
-
-  // Close popup when clicking outside the popup
-  $(document).mouseup(function (e) {
-    var popup = $("#popup");
-    if (!popup.is(e.target) && popup.has(e.target).length === 0) {
-      $(".overlay").fadeOut();
-      popup.fadeOut();
-    }
-  });
-
-  // Close popup when clicking the close button
-  $(".close-btn").click(function () {
-    $(".overlay").fadeOut();
-    $("#popup").fadeOut();
-  });
-});
-
-
-
-  </script>
-
+</script>
 
 </body>
 

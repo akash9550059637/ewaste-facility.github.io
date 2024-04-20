@@ -2,11 +2,11 @@
 const mongoose = require('mongoose');
 
 // Define schema for e-waste request
-const RequestSchema = new mongoose.Schema({
+const FacilitySchema = new mongoose.Schema({
     email: String,
-    productCategory: String,
-    productName: String,
-    additionalInfo: String,
+    facilityName: String,
+    facilityDetails: String,
+    additionalDetails: String,
     location: {
         type: {
             type: String,
@@ -20,7 +20,7 @@ const RequestSchema = new mongoose.Schema({
 });
 
 // Create model for e-waste request
-const Request = mongoose.model('Request', RequestSchema);
+const Facility = mongoose.model('Facility', FacilitySchema);
 
 // Export the model
-module.exports = Request;
+module.exports = Facility;

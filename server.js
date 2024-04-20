@@ -21,7 +21,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 const User = require('./userModel');
 const Admin = require('./adminModel');
 const Request = require('./Request');
-const facilityModel = require('./facilityModel');
+const Facility = require('./Facility');
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
@@ -101,44 +101,37 @@ app.post('/EwasteRequest', (req, res) => {
         });
 });
 
-//handle post request to save the faciity details from admin-index.html
-
-app.post('/submit-form', (req, res) => {
-  try {
+//handle post request from admin-index.html to save the form or facility detiails into database
+app.post('/facilityDetails', (req, res) => {
+    // Extract data from the request body
     const { email, facilityName, facilityDetails, additionalDetails, location } = req.body;
-    
-    // Extract latitude and longitude from the location string
+
+    // Split the location string into latitude and longitude
     const [latitude, longitude] = location.split(',');
 
-    const facilityEntry = new FacilityModel({
-      email,
-      facilityName,
-      facilityDetails,
-      additionalDetails,
-      location: {
-        type: 'Point',
-        coordinates: [parseFloat(longitude), parseFloat(latitude)]
-      }
+    // Create a new Request document using the Request model
+    const newFacility = new Facility({
+        email,
+		facilityName,
+		facilityDetails,
+		additionalDetails, 
+        location: {
+            type: 'Point',
+            coordinates: [parseFloat(longitude), parseFloat(latitude)] // Note the order of coordinates
+        }
     });
-    
-    facilityEntry.save()
-      .then(savedFacilityEntry => {
-        console.log('E-waste facility has been saved', savedFacilityEntry);
-        res.status(201).send('E-waste facility details request saved successfully');
-      })
-      .catch(error => {
-        console.error('Error saving e-waste request:', error);
-        res.status(500).send('Error saving e-waste request'); // Corrected the status code here
-      });
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    res.status(500).send('Internal server error',error); // Corrected the status code here
-  }
+
+    // Save the new request document to the database
+    newFacility.save()
+        .then(savedFacility => {
+            console.log('Facility request saved successfully:', savedFacility);
+            res.status(201).send('Facility request saved successfully');
+        })
+        .catch(error => {
+            console.error('Error saving facility request:', error);
+            res.status(500).send('Error saving facility request');
+        });
 });
-
-
-
-
 
 // Handle POST request for user login
 
