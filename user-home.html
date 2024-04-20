@@ -35,9 +35,86 @@
             location.reload(true); // Reload the page when the back button is clicked
         });
     </script>
+	
+	 <style>
+	 
+	 #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity (last value) as needed */
+    z-index: 9999; /* Ensure the overlay is above other content */
+    display: none; /* Initially hidden */
+}
+
+        #e-waste-popup {
+            width: 400px;
+            height: 400px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            display: none;
+			z-index: 9999;
+        }
+
+        #e-waste-popup h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #e-waste-popup form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #e-waste-popup label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #e-waste-popup select,
+        #e-waste-popup textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #e-waste-popup button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #e-waste-popup button:hover {
+            background-color: #0056b3;
+        }
+
+        #e-waste-popup .map-container {
+            /* Add your map styling here */
+        }
+    </style>
+	
 </head>
 
 <body>
+<div id="overlay"></div>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -67,7 +144,7 @@
                         <div class="nav-item dropdown">
                             <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Recycle</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="pop-up1.html" class="dropdown-item">REQUEST PICK-UP</a>
+                                <a href="#" id="popup" class="dropdown-item">REQUEST PICK-UP</a>
                                 <a href="#section3" class="dropdown-item">ESTIMATE REWARDS</a>
                                 <a href="#section3" class="dropdown-item">VIEW PICK-UPS</a>
                             </div>
@@ -84,8 +161,8 @@
             </nav>
         </div>
         <!-- Navbar End -->
-
-
+		
+	
         <!-- Header Start -->
         
         <div id="section1" class="container-fluid header bg-white p-0">
@@ -248,184 +325,6 @@
         </div>
         <!-- Category End -->
 
-
-        <!-- About Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                            <img class="img-fluid w-100" src="img/about.jpg">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">#1 Place To Find The Perfect Property</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Clita duo justo magna dolore erat amet</p>
-                        <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- About End -->
-
-
-
-        <!-- Call to Action Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="bg-light rounded p-3">
-                    <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
-                        <div class="row g-5 align-items-center">
-                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                <img class="img-fluid rounded w-100" src="img/call-to-action.jpg" alt="">
-                            </div>
-                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="mb-4">
-                                    <h1 class="mb-3">Contact With Our Certified Agent</h1>
-                                    <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit diam justo sed vero dolor duo.</p>
-                                </div>
-                                <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
-                                <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Call to Action End -->
-
-
-        <!-- Team Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Property Agents</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/team-1.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/team-2.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/team-3.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/team-4.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
-
-
-        <!-- Testimonial Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Our Clients Say!</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
-                </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-1.jpg" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-2.jpg" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-light rounded p-3">
-                        <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-3.jpg" style="width: 45px; height: 45px;">
-                                <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
-        
-
         <!-- Footer Start -->
         <div id="section6"class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
@@ -483,6 +382,40 @@
             </div>
         </div>
         <!-- Footer End -->
+		
+		 <!-- Pop-up HTML content -->
+        <div id="e-waste-popup">
+    <button id="close-button">Close</button>
+    <h2>Request for E-waste Pickup</h2>
+    <form id="ewaste-form" action="http://localhost:3001/EwasteRequest" method="post">
+        <input type="text" id="email" name="email" placeholder="Enter Email that is used for Login">
+        <br>
+        <label for="device-category">Select or Enter the Device Category:</label>
+        <select id="device-category" name="productCategory">
+            <option value="mobile">Mobile</option>
+            <option value="laptop">Laptop</option>
+            <option value="television">Television</option>
+            <option value="computer">Computer</option>
+            <option value="washing-machine">Washing Machine</option>
+            <option value="mixer">Mixer</option>
+            <!-- Add more options as needed -->
+        </select>
+        <input type="text" id="custom-device" name="productName" placeholder="Enter custom device name">
+        <br>
+        <label for="additional-details">Additional Details:</label>
+        <textarea id="additional-details" name="additionalInfo" placeholder="Enter additional information"></textarea>
+        <br>
+        <!-- Hidden input field to store location coordinates -->
+        <input type="hidden" id="location-input" name="location">
+        <button id="locate-button">Locate</button>
+        <br>
+        <div id="coordinates-container"></div>
+        <div class="map-container" id="mapbox-map"></div>
+        <br>
+        <button type="submit" id="submit-button">Submit</button>
+    </form>
+</div>
+
 
 
         <!-- Back to Top -->
@@ -499,6 +432,90 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+	
+	
+
+        <!-- Custom Pop-up JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('e-waste-popup');
+
+        // Function to open the pop-up
+        function openPopup() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block'; // Show overlay
+        }
+
+        // Function to close the pop-up
+        function closePopup() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none'; // Hide overlay
+        }
+
+        // Add event listener to open the pop-up when "REQUEST PICK-UP" is clicked
+        document.getElementById('popup').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            openPopup(); // Open the pop-up
+        });
+
+        // Add event listener to close the pop-up when the close button is clicked
+        document.getElementById('close-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button behavior
+            closePopup(); // Close the pop-up
+        });
+
+        // Event listener to close the pop-up when clicking on the overlay
+        overlay.addEventListener('click', function() {
+            closePopup();
+        });
+
+        // Event listener to prevent closing the pop-up when clicking inside the pop-up itself
+        popup.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    });
+	
+	
+	//Locate button functionality
+	
+	document.addEventListener('DOMContentLoaded', function() {
+    const locateButton = document.getElementById('locate-button');
+    const coordinatesContainer = document.getElementById('coordinates-container');
+    const locationInput = document.getElementById('location-input');
+
+    // Function to get user's current location
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Capture user's latitude and longitude
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                // Show coordinates in the container beside the button
+                coordinatesContainer.textContent = "Latitude: " + latitude + ", Longitude: " + longitude;
+
+                // Update the value of the hidden input field with the coordinates
+                locationInput.value = latitude + "," + longitude;
+            }, function(error) {
+                console.error("Error getting user's location:", error);
+            });
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }
+
+    // Event listener for the locate button to get user's location
+    locateButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        getLocation();
+    });
+});
+
+
+
+</script>
+
     
       
 </body>

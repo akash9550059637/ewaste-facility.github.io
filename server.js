@@ -17,9 +17,10 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
         console.error('MongoDB connection error:', err);
     });
 
-// Import the User and Admin models
+// Import the User and Admin and EwasteRequest models
 const User = require('./userModel');
 const Admin = require('./adminModel');
+const Request = require('./Request');
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
@@ -64,6 +65,45 @@ app.post('/register', (req, res) => {
             res.status(400).send('Error registering user: ' + err);
         });
 });
+
+
+
+// handle post request from user-home.htl to save the reuest form data in database.
+app.post('/EwasteRequest', (req, res) => {
+    // Extract data from the request body
+    const { email, productCategory, productName, additionalInfo, location } = req.body;
+
+    // Split the location string into latitude and longitude
+    const [latitude, longitude] = location.split(',');
+
+    // Create a new Request document using the Request model
+    const newRequest = new Request({
+        email,
+        productCategory,
+        productName,
+        additionalInfo,
+        location: {
+            type: 'Point',
+            coordinates: [parseFloat(longitude), parseFloat(latitude)] // Note the order of coordinates
+        }
+    });
+
+    // Save the new request document to the database
+    newRequest.save()
+        .then(savedRequest => {
+            console.log('E-waste request saved successfully:', savedRequest);
+            res.status(201).send('E-waste request saved successfully');
+        })
+        .catch(error => {
+            console.error('Error saving e-waste request:', error);
+            res.status(500).send('Error saving e-waste request');
+        });
+});
+
+
+
+
+
 
 // Handle POST request for user login
 
