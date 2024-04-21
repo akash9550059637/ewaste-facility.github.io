@@ -222,7 +222,18 @@
             </div>
         </div>
         <!-- Search End -->
-
+		
+		
+		<!--Map section-->
+		<section id="mapSection" style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+  <div id="map" style="height: 500px; width: 500px; border-radius: 50%; overflow: hidden;"></div>
+  <button id="locateBtn" style="margin-left: 20px; padding: 8px; cursor: pointer;" onclick="locateUser()">Locate</button>
+  </section>
+<!--Map section ends-->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+	<!-- Include Leaflet CSS -->
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<!--Map section ends-->
 
         <!-- Category Start -->
         <div id="section3.1" class="container-xxl py-5">
@@ -513,9 +524,96 @@
 });
 
 
-
 </script>
 
+
+<!-- Map script -->
+<script>
+  var map = L.map('map').setView([0, 0], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  function locateUser() {
+    map.locate({ setView: true, maxZoom: 15 });
+  }
+
+  map.on('locationfound', function (e) {
+    var circle = L.circle(e.latlng, {
+      color: 'blue',
+      fillColor: '#3186cc',
+      fillOpacity: 0.5,
+      radius: 1,
+    }).addTo(map);
+
+    var marker = L.marker(e.latlng).addTo(map);
+    marker.bindPopup('You are here!').openPopup();
+  });
+
+  map.on('locationerror', function (e) {
+    alert("Location access denied or not available.");
+  });
+</script>
+
+
+
+
+
+<!-- Map script -->
+<script>
+    var map = L.map('map').setView([0, 0], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    function locateUser() {
+        map.locate({ setView: true, maxZoom: 15 });
+    }
+
+    map.on('locationfound', function (e) {
+        var circle = L.circle(e.latlng, {
+            color: 'blue',
+            fillColor: '#3186cc',
+            fillOpacity: 0.5,
+            radius: 1,
+        }).addTo(map);
+
+        var marker = L.marker(e.latlng).addTo(map);
+        
+        // Define popup content with details
+        var popupContent = "<b>Name:</b> John Doe<br><b>Contact:</b> 123-456-7890<br><b>Email:</b> john@example.com";
+
+        // Create a tooltip
+        marker.bindTooltip(popupContent, {
+            permanent: true, // Show the tooltip permanently
+            direction: 'top' // Position the tooltip above the marker
+        }).openTooltip();
+    });
+
+    map.on('locationerror', function (e) {
+        alert("Location access denied or not available.");
+    });
+</script>
+
+<script>
+var mgitLocation = { name: "MGIT", latlng: [17.39200505656184, 78.32258422460308], contact: "91********", email: "mgit@locator.com" };
+
+    // Add MGIT location marker
+    var mgitMarker = L.marker(mgitLocation.latlng).addTo(map);
+    
+    // Define popup content for MGIT location
+    var mgitPopupContent = "<b>Name:</b> " + mgitLocation.name + "<br><b>Contact:</b> " + mgitLocation.contact + "<br><b>Email:</b> " + mgitLocation.email;
+
+    // Create a tooltip for MGIT location
+    mgitMarker.bindTooltip(mgitPopupContent, {
+        permanent: true,
+        direction: 'top'
+    }).openTooltip();
+	</script>
+<!--map script ends-->
+<!--map script ends-->
     
       
 </body>
