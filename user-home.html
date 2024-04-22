@@ -109,6 +109,68 @@
         #e-waste-popup .map-container {
             /* Add your map styling here */
         }
+
+        .content {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+          }
+          .educate-popup {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 500ms;
+            visibility: hidden;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .educate-popup:target {
+            visibility: visible;
+            opacity: 1;
+          }
+          .popup_educate {
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            transition: all 2s ease-in-out;
+            overflow-y: auto;
+            max-height: 80vh;
+          }
+          .popup_educate .close_popup {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            transition: all 200ms;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+          }
+          .popup_body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+          }
+          h1 {
+            color: #333;
+          }
+          p {
+            color: #666;
+          }
+          .component {
+            margin-bottom: 20px;
+          }
+          .component h2 {
+            color: #555;
+          }
     </style>
 	
 </head>
@@ -195,32 +257,40 @@
                     <div class="col-md-10">
                         <div class="row g-2">
                             <div class="col-md-4">
-                                <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Property Type</option>
-                                    <option value="1">Property Type 1</option>
-                                    <option value="2">Property Type 2</option>
-                                    <option value="3">Property Type 3</option>
+                                <select id="device-type" class="form-select border-0 py-3">
+                                    <option selected disabled>Select device</option>
+                                    <option value="laptop">Laptop</option>
+                                    <option value="smartphone">Smartphone</option>
+                                    <option value="television">Television</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Location</option>
-                                    <option value="1">Location 1</option>
-                                    <option value="2">Location 2</option>
-                                    <option value="3">Location 3</option>
+                                <select id="quantity" class="form-select border-0 py-3">
+                                    <option selected disabled>Quantity</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+                        <button id="estimate-btn" class="btn btn-dark border-0 w-100 py-3">Estimate</button>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Display Estimated Rewards -->
+        <div id="result-container" class="container" style="display: none;">
+            <div class="row">
+                <div class="col">
+                    <h3>Estimated Rewards</h3>
+                    <p id="reward-result"></p>
+                </div>
+            </div>
+        </div>
+        
         <!-- Search End -->
 		
 		
@@ -244,7 +314,7 @@
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#laptop">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="Laptop.jpg" alt="Icon">
@@ -255,7 +325,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#smartphone">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="smartphone.jpg" alt="Icon">
@@ -266,7 +336,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#computer">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="computer.jpg" alt="Icon">
@@ -277,7 +347,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#battery">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="battery.png" alt="Icon">
@@ -288,7 +358,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#lcd">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="lcd.png" alt="Icon">
@@ -299,7 +369,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#fridge">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="fridge.png" alt="Icon">
@@ -310,7 +380,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#old">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="old..jpg" alt="Icon">
@@ -321,7 +391,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#tv">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="tv.png" alt="Icon">
@@ -393,6 +463,298 @@
             </div>
         </div>
         <!-- Footer End -->
+
+        <div id="laptop" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Laptop</h2>
+                <a class="close_popup" href="#">&times;</a>
+                
+                    <div class="popup_body" >
+                        <h1>Harmful Components in Laptops</h1>
+
+                        <div class="component">
+                          <h2>Batteries</h2>
+                          <p>Laptop batteries contain toxic metals such as lithium, cadmium, and lead. Improper disposal can lead to contamination of soil and groundwater, posing risks to human health and ecosystems.</p>
+                        </div>
+                      
+                        <div class="component">
+                          <h2>Mercury</h2>
+                          <p>Some laptops contain small amounts of mercury in fluorescent lamps used for backlighting. Mercury is highly toxic and can harm ecosystems and human health if released into the environment through improper disposal.</p>
+                        </div>
+                      
+                        <div class="component">
+                          <h2>Lead</h2>
+                          <p>Lead is present in solder used on circuit boards. Improper disposal of laptops can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses.</p>
+                        </div>
+                      
+                        <div class="component">
+                          <h2>Brominated Flame Retardants (BFRs)</h2>
+                          <p>BFRs used in laptops can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems.</p>
+                        </div>
+                      
+                        <div class="component">
+                          <h2>Plastics</h2>
+                          <p>While not inherently toxic, plastics in laptops can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems.</p>
+                        </div>        
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        
+        <div id="smartphone" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in SmartPhone</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+
+                        <!-- Smartphones -->
+                        <div class="component">
+                          <h2>Lithium-ion Batteries</h2>
+                          <p>Smartphones often contain lithium-ion batteries which can leak toxic chemicals if not disposed of properly. These chemicals can contaminate soil and water sources, posing risks to human and environmental health. Lithium-ion batteries can also pose a fire risk if they are damaged or improperly handled.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Mercury</h2>
+                          <p>Some smartphones may contain small amounts of mercury in components such as the display backlighting. Mercury is highly toxic and can harm ecosystems and human health if released into the environment through improper disposal. Long-term exposure to mercury can lead to serious health issues, including neurological disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Lead</h2>
+                          <p>Lead is present in solder used in smartphone circuit boards. Improper disposal of smartphones can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses. Lead exposure can lead to developmental delays, learning difficulties, and other health problems.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Brominated Flame Retardants (BFRs)</h2>
+                          <p>BFRs are used in smartphones to reduce the risk of fire. However, these chemicals can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems. These chemicals have been linked to hormone disruption and developmental disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Plastics</h2>
+                          <p>Smartphones contain various types of plastics in their casings and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in smartphones contain additives that have been linked to health issues in humans.</p>
+                        </div>
+                    
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="battery" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in Battery</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+
+                        <!-- Rechargeable Batteries -->
+                        <div class="component">
+                          <h2>Cadmium</h2>
+                          <p>Rechargeable batteries, such as nickel-cadmium (NiCd) batteries, contain cadmium, which is highly toxic. Improper disposal can lead to cadmium leaching into the soil and water, posing risks to ecosystems and human health. Chronic exposure to cadmium has been linked to kidney damage and bone diseases.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Lithium-ion Batteries</h2>
+                          <p>Lithium-ion batteries, commonly used in rechargeable electronic devices, contain toxic materials such as lithium, cobalt, and nickel. Improper disposal can lead to environmental pollution and health risks due to the release of these toxic substances. Lithium-ion batteries can also pose a fire hazard if they are damaged or improperly handled.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Nickel</h2>
+                          <p>Some rechargeable batteries, such as nickel-metal hydride (NiMH) batteries, contain nickel, which can be harmful to the environment and human health if not disposed of properly. Nickel can leach into the soil and water, posing risks to ecosystems and potentially causing allergic reactions or other health problems in humans.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Electrolytes</h2>
+                          <p>Rechargeable batteries contain electrolytes, which are typically made of acidic or alkaline solutions. Improper disposal can lead to the release of these electrolytes into the environment, causing soil and water contamination and posing risks to human and environmental health. Some electrolytes can be corrosive or toxic if ingested or inhaled.</p>
+                        </div>
+                    
+                        <div class="component">
+                          <h2>Plastics</h2>
+                          <p>Rechargeable batteries often contain plastic casings and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in batteries contain additives that have been linked to health issues in humans.</p>
+                        </div>
+                    
+                      </div>
+                </div>
+            </div>
+        </div>
+         
+        <div id="computer" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in Computer</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+                      <!-- Computers -->
+                        <div class="component">
+                            <h2>Lead</h2>
+                            <p>Computers may contain lead in solder used on circuit boards and in CRT monitors. Improper disposal of computers can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses. Lead exposure can lead to neurological and developmental issues, especially in children.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Mercury</h2>
+                            <p>Some components in computers, such as older switches and relays, may contain mercury. Mercury is highly toxic and can harm ecosystems and human health if released into the environment through improper disposal. Long-term exposure to mercury can lead to serious health issues, including neurological disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Brominated Flame Retardants (BFRs)</h2>
+                            <p>BFRs are commonly used in computer housings, circuit boards, and cables to reduce the risk of fire. However, these chemicals can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems. These chemicals have been linked to hormone disruption and developmental disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Plastics</h2>
+                            <p>Computers contain various types of plastics in their casings, cables, and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in computers contain additives that have been linked to health issues in humans.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Chlorofluorocarbons (CFCs)</h2>
+                            <p>Older computers and monitors may contain CFCs in cooling systems and insulation. CFCs are ozone-depleting substances that contribute to global warming. Proper disposal is essential to prevent the release of CFCs into the atmosphere. Exposure to CFCs can lead to respiratory problems and environmental damage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lcd" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in LCD screens</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+                        <div class="component">
+                            <h2>Mercury</h2>
+                            <p>Some LCD screens contain mercury, a highly toxic substance. If not disposed of properly, mercury can contaminate the environment, leading to serious health and environmental risks. Mercury exposure can damage the nervous system, kidneys, and other organs.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Fluorescent Lamps</h2>
+                            <p>Many LCD screens use fluorescent lamps for backlighting. These lamps contain mercury vapor, which can be released into the environment if the screen is not properly disposed of. Mercury vapor is highly toxic and can pose significant health risks, especially through inhalation.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Lead</h2>
+                            <p>Some LCD screens may contain lead in solder used on circuit boards or in other components. Improper disposal of LCD screens can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses. Lead exposure can lead to neurological and developmental issues, especially in children.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Arsenic</h2>
+                            <p>Arsenic is used in some LCD screens as a semiconductor material. Improper disposal of LCD screens can lead to arsenic leaching into the environment, posing risks to human health and ecosystems. Arsenic exposure can lead to a range of health issues, including skin lesions, cardiovascular disease, and cancer.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Plastics</h2>
+                            <p>Many components of LCD screens are made of plastics. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in LCD screens contain additives that have been linked to health issues in humans.</p>
+                          </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="fridge" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in fridge and AC</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+                        <div class="component">
+                            <h2>Chlorofluorocarbons (CFCs)</h2>
+                            <p>Refrigerators and air conditioners contain CFCs, which deplete the ozone layer and contribute to global warming. Proper disposal is essential to prevent the release of CFCs into the atmosphere. Exposure to CFCs can lead to respiratory problems and environmental damage.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Hydrochlorofluorocarbons (HCFCs)</h2>
+                            <p>Older refrigerators and air conditioners may contain HCFCs, which are less damaging to the ozone layer than CFCs but still contribute to global warming. Proper disposal is necessary to prevent the release of HCFCs into the atmosphere. Exposure to HCFCs can lead to respiratory problems and environmental damage.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Refrigerants</h2>
+                            <p>Refrigerators and air conditioners contain refrigerants, which are chemicals used to cool the air or refrigerate food. Some refrigerants, such as hydrofluorocarbons (HFCs), are potent greenhouse gases that contribute to global warming. Improper disposal can lead to the release of refrigerants into the atmosphere, exacerbating climate change.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Electronic Waste</h2>
+                            <p>Refrigerators and air conditioners contain electronic components that can be harmful to the environment if not disposed of properly. These components may contain heavy metals such as lead, mercury, and cadmium, which can leach into the soil and water, posing risks to human health and ecosystems.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Plastics</h2>
+                            <p>Refrigerators and air conditioners contain various plastics in their casings and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in refrigerators and air conditioners contain additives that have been linked to health issues in humans.</p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="old" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in old electronics</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+                        <div class="component">
+                            <h2>Heavy Metals</h2>
+                            <p>Older electronics may contain heavy metals such as lead, mercury, and cadmium, which are harmful to human health and the environment. Proper disposal is necessary to prevent pollution and health risks. These metals can bioaccumulate in the food chain and cause long-term health problems.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Chlorofluorocarbons (CFCs)</h2>
+                            <p>Older electronics, such as CRT monitors and older refrigerators, may contain CFCs, which deplete the ozone layer and contribute to global warming. Proper disposal is essential to prevent the release of CFCs into the atmosphere. Exposure to CFCs can lead to respiratory problems and environmental damage.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Brominated Flame Retardants (BFRs)</h2>
+                            <p>BFRs were commonly used in older electronics to reduce the risk of fire. However, these chemicals can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems. These chemicals have been linked to hormone disruption and developmental disorders.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Plastics</h2>
+                            <p>Older electronics often contain plastics in their casings and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in older electronics contain additives that have been linked to health issues in humans.</p>
+                          </div>
+                      
+                          <div class="component">
+                            <h2>Electronic Waste</h2>
+                            <p>Older electronics contribute to the growing problem of electronic waste (e-waste). Improper disposal of e-waste can lead to environmental pollution and health risks. Recycling or proper disposal of old electronics is essential to minimize their impact on the environment and human health.</p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tv" class="educate-popup">
+            <div class="popup_educate">
+                <h2>Components in Monitors and TV</h2>
+                <a class="close_popup" href="#">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+                    <!-- Monitors and TVs -->
+                        <div class="component">
+                            <h2>Mercury</h2>
+                            <p>Some monitors and TVs contain mercury, a highly toxic substance. If not disposed of properly, mercury can contaminate the environment, leading to serious health and environmental risks. Mercury exposure can damage the nervous system, kidneys, and other organs.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Phosphor</h2>
+                            <p>Monitors and TVs contain phosphor, which can release toxic substances if not disposed of properly. Improper disposal can lead to environmental contamination and health risks. Phosphor contains heavy metals such as mercury and lead, which are hazardous to human health and the environment.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Lead</h2>
+                            <p>Some monitors and TVs may contain lead in solder used on circuit boards or in other components. Improper disposal of monitors and TVs can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses. Lead exposure can lead to neurological and developmental issues, especially in children.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Brominated Flame Retardants (BFRs)</h2>
+                            <p>BFRs are commonly used in monitors and TVs to reduce the risk of fire. However, these chemicals can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems. These chemicals have been linked to hormone disruption and developmental disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Plastics</h2>
+                            <p>Monitors and TVs contain various plastics in their casings and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in monitors and TVs contain additives that have been linked to health issues in humans.</p>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
 		
 		 <!-- Pop-up HTML content -->
         <div id="e-waste-popup">
@@ -614,6 +976,45 @@ var mgitLocation = { name: "MGIT", latlng: [17.39200505656184, 78.32258422460308
 	</script>
 <!--map script ends-->
 <!--map script ends-->
+
+<script>
+    document.getElementById('logout-btn').addEventListener('click', function() {
+        // Redirect the user to the login page
+        window.location.href = '/login.html';
+    });
+</script>
+    <script>
+        document.getElementById('estimate-btn').addEventListener('click', function() {
+            // Get selected device type and quantity
+            const deviceType = document.getElementById('device-type').value;
+            const quantity = document.getElementById('quantity').value;
+        
+            // Make a fetch request to estimate rewards
+            fetch('/estimate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: [{
+                            name: deviceType,
+                            quantity: parseInt(quantity) // Convert quantity to integer
+                        }]
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the estimated rewards in the result container
+                    const totalRewards = data.totalRewards;
+                    document.getElementById('reward-result').textContent = `Total Rewards: ${totalRewards} points`;
+                    document.getElementById('result-container').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error estimating rewards:', error);
+                });
+        });
+        
+    </script>
     
       
 </body>

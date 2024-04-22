@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path'); // Import path module
 const jwt = require('jsonwebtoken');
+const Reward = require('./rewardModel');
+
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -149,6 +151,44 @@ app.post("/login", (req, res) => {
         res.status(500).send("Server error");
     });
 });
+
+// Endpoint for estimating rewards
+app.post('/estimate', async (req, res) => {
+    const { items } = req.body;
+
+    try {
+        let totalRewards = 0;
+        for (const item of items) {
+            const reward = await Reward.findOne({ item: item.name });
+            if (!reward) {
+                throw new Error('Reward points not found for the selected item');
+            }
+            totalRewards += item.quantity * reward.points;
+        }
+
+        res.json({ totalRewards });
+    } catch (error) {
+        console.error('Error estimating rewards:', error);
+        res.status(500).json({ error: 'Error estimating rewards' });
+    }
+});
+
+// Data Population Script for Rewards
+async function populateRewards() {
+    try {
+        await Reward.deleteMany();
+        await Reward.create([
+            { item: 'laptop', points: 1000 },
+            { item: 'smartphone', points: 500 },
+            { item: 'television', points: 1500 },
+        ]);
+        console.log('Rewards data populated successfully');
+    } catch (error) {
+        console.error('Error populating rewards data:', error);
+    }
+}
+
+populateRewards();
 
 
 // Handle POST request from admin-register.html form for admin registration
