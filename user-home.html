@@ -116,33 +116,27 @@
             padding: 20px;
           }
           .educate-popup {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            transition: opacity 500ms;
-            visibility: hidden;
-            opacity: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    overflow: auto;
           }
           .educate-popup:target {
             visibility: visible;
             opacity: 1;
           }
           .popup_educate {
-            padding: 20px;
-            background: #fff;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 600px;
-            position: relative;
-            transition: all 2s ease-in-out;
-            overflow-y: auto;
-            max-height: 80vh;
+             background-color: #fff;
+    max-width: 80%;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
           }
           .popup_educate .close_popup {
             position: absolute;
@@ -153,6 +147,8 @@
             font-weight: bold;
             text-decoration: none;
             color: #333;
+			
+			
           }
           .popup_body {
             font-family: Arial, sans-serif;
@@ -313,97 +309,109 @@
                     <p>Learn about various harmful materials in electronic gadgets</p>
                 </div>
                 <div class="row g-4">
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#laptop">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="Laptop.jpg" alt="Icon">
-                                </div>
-                                <h6>Laptop</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#smartphone">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="smartphone.jpg" alt="Icon">
-                                </div>
-                                <h6>Smart Phone</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#computer">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="computer.jpg" alt="Icon">
-                                </div>
-                                <h6>Computer</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#battery">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="battery.png" alt="Icon">
-                                </div>
-                                <h6>Rechargeable Batteries </h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#lcd">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="lcd.png" alt="Icon">
-                                </div>
-                                <h6>LCD Screens</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#fridge">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="fridge.png" alt="Icon">
-                                </div>
-                                <h6>Refrigerators and Air Conditioners</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#old">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="old..jpg" alt="Icon">
-                                </div>
-                                <h6>Older Electronics</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="#tv">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" src="tv.png" alt="Icon">
-                                </div>
-                                <h6>Monitors and TVs</h6>
-                                
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                    <!-- Category item -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+    <a class="cat-item d-block bg-light text-center rounded p-3" href="#laptop">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="Laptop.jpg" alt="Icon">
             </div>
+            <h6>Laptop</h6>
         </div>
+    </a>
+</div>
+                    <!-- Category item for Smart Phone -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="cat-item d-block bg-light text-center rounded p-3" onclick="openPopup('smartphone-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="smartphone.jpg" alt="Icon">
+            </div>
+            <h6>Smart Phone</h6>
+        </div>
+    </div>
+</div>
+					
+					
+                   <!-- Category item for Computer -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+    <div class="cat-item d-block bg-light text-center rounded p-3" onclick="openPopup('computer-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="computer.jpg" alt="Icon">
+            </div>
+            <h6>Computer</h6>
+        </div>
+    </div>
+</div>
+				   
+				   
+                    <!-- Category item for Rechargeable Batteries -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+    <div class="cat-item d-block bg-light text-center rounded p-3" onclick="openPopup('battery-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="battery.png" alt="Icon">
+            </div>
+            <h6>Rechargeable Batteries</h6>
+        </div>
+    </div>
+</div>
+					
+					
+					
+                    <!-- Category item for LCD Screens -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="cat-item d-block bg-light text-center rounded p-3" onclick="openPopup('lcd-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="lcd.png" alt="Icon">
+            </div>
+            <h6>LCD Screens</h6>
+        </div>
+    </div>
+</div>
+					
+					
+                    <!-- Category item for Refrigerators and Air Conditioners -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+    <div class="cat-item d-block bg-light text-center rounded p-3" onclick="openPopup('fridge-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="fridge.png" alt="Icon">
+            </div>
+            <h6>Refrigerators and Air Conditioners</h6>
+        </div>
+    </div>
+</div>
+					
+					
+					
+                    <!-- Category item for Older Electronics -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+    <a class="cat-item d-block bg-light text-center rounded p-3" href="#" onclick="openPopup('old-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="old.jpg" alt="Icon">
+            </div>
+            <h6>Older Electronics</h6>
+        </div>
+    </a>
+</div>
+
+					
+					
+                    <!-- Category item for Monitors and TVs -->
+<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+    <a class="cat-item d-block bg-light text-center rounded p-3" href="#" onclick="openPopup('tv-popup')">
+        <div class="rounded p-4">
+            <div class="icon mb-3">
+                <img class="img-fluid" src="tv.png" alt="Icon">
+            </div>
+            <h6>Monitors and TVs</h6>
+        </div>
+    </a>
+</div>
         <!-- Category End -->
 
         <!-- Footer Start -->
@@ -499,13 +507,14 @@
                         </div>
                     </div>
             </div>
-        </div>
+       
         
         
-        <div id="smartphone" class="educate-popup">
+        <div id="smartphone-popup" class="educate-popup">
             <div class="popup_educate">
                 <h2>Components in SmartPhone</h2>
-                <a class="close_popup" href="#">&times;</a>
+                <a class="close_popup" href="javascript:void(0);" onclick="closePopup('smartphone-popup')">&times;</a>
+
                 <div class="popup_body">
                     <div class="content">
 
@@ -540,11 +549,48 @@
             </div>
         </div>
         
-        
-        <div id="battery" class="educate-popup">
+		
+		<div id="computer-popup" class="educate-popup">
             <div class="popup_educate">
-                <h2>Components in Battery</h2>
-                <a class="close_popup" href="#">&times;</a>
+                <h2>Components in Computer</h2>
+                <a class="close_popup" href="#" onclick="closePopup('computer-popup')">&times;</a>
+                <div class="popup_body">
+                    <div class="content">
+                      <!-- Computers -->
+                        <div class="component">
+                            <h2>Lead</h2>
+                            <p>Computers may contain lead in solder used on circuit boards and in CRT monitors. Improper disposal of computers can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses. Lead exposure can lead to neurological and developmental issues, especially in children.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Mercury</h2>
+                            <p>Some components in computers, such as older switches and relays, may contain mercury. Mercury is highly toxic and can harm ecosystems and human health if released into the environment through improper disposal. Long-term exposure to mercury can lead to serious health issues, including neurological disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Brominated Flame Retardants (BFRs)</h2>
+                            <p>BFRs are commonly used in computer housings, circuit boards, and cables to reduce the risk of fire. However, these chemicals can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems. These chemicals have been linked to hormone disruption and developmental disorders.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Plastics</h2>
+                            <p>Computers contain various types of plastics in their casings, cables, and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in computers contain additives that have been linked to health issues in humans.</p>
+                        </div>
+                    
+                        <div class="component">
+                            <h2>Chlorofluorocarbons (CFCs)</h2>
+                            <p>Older computers and monitors may contain CFCs in cooling systems and insulation. CFCs are ozone-depleting substances that contribute to global warming. Proper disposal is essential to prevent the release of CFCs into the atmosphere. Exposure to CFCs can lead to respiratory problems and environmental damage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+       <div id="battery-popup" class="educate-popup">
+    <div class="popup_educate">
+        <h2>Components in Battery</h2>
+        <a class="close_popup" href="#" onclick="closePopup('battery-popup')">&times;</a>
                 <div class="popup_body">
                     <div class="content">
 
@@ -579,46 +625,12 @@
             </div>
         </div>
          
-        <div id="computer" class="educate-popup">
-            <div class="popup_educate">
-                <h2>Components in Computer</h2>
-                <a class="close_popup" href="#">&times;</a>
-                <div class="popup_body">
-                    <div class="content">
-                      <!-- Computers -->
-                        <div class="component">
-                            <h2>Lead</h2>
-                            <p>Computers may contain lead in solder used on circuit boards and in CRT monitors. Improper disposal of computers can result in lead leaching into the soil and water, posing risks to human health, particularly in children and developing fetuses. Lead exposure can lead to neurological and developmental issues, especially in children.</p>
-                        </div>
-                    
-                        <div class="component">
-                            <h2>Mercury</h2>
-                            <p>Some components in computers, such as older switches and relays, may contain mercury. Mercury is highly toxic and can harm ecosystems and human health if released into the environment through improper disposal. Long-term exposure to mercury can lead to serious health issues, including neurological disorders.</p>
-                        </div>
-                    
-                        <div class="component">
-                            <h2>Brominated Flame Retardants (BFRs)</h2>
-                            <p>BFRs are commonly used in computer housings, circuit boards, and cables to reduce the risk of fire. However, these chemicals can persist in the environment and accumulate in living organisms. Improper disposal can lead to the release of BFRs into the environment, posing risks to human health and ecosystems. These chemicals have been linked to hormone disruption and developmental disorders.</p>
-                        </div>
-                    
-                        <div class="component">
-                            <h2>Plastics</h2>
-                            <p>Computers contain various types of plastics in their casings, cables, and components. While not inherently toxic, plastics can release harmful chemicals when they degrade. Improper disposal can result in pollution and harm to wildlife and ecosystems. Some plastics used in computers contain additives that have been linked to health issues in humans.</p>
-                        </div>
-                    
-                        <div class="component">
-                            <h2>Chlorofluorocarbons (CFCs)</h2>
-                            <p>Older computers and monitors may contain CFCs in cooling systems and insulation. CFCs are ozone-depleting substances that contribute to global warming. Proper disposal is essential to prevent the release of CFCs into the atmosphere. Exposure to CFCs can lead to respiratory problems and environmental damage.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
-        <div id="lcd" class="educate-popup">
-            <div class="popup_educate">
-                <h2>Components in LCD screens</h2>
-                <a class="close_popup" href="#">&times;</a>
+        <div id="lcd-popup" class="educate-popup">
+    <div class="popup_educate">
+        <h2>Components in LCD screens</h2>
+        <a class="close_popup" href="#" onclick="closePopup('lcd-popup')">&times;</a>
                 <div class="popup_body">
                     <div class="content">
                         <div class="component">
@@ -651,10 +663,12 @@
             </div>
         </div>
 
-        <div id="fridge" class="educate-popup">
-            <div class="popup_educate">
-                <h2>Components in fridge and AC</h2>
-                <a class="close_popup" href="#">&times;</a>
+
+
+        <div id="fridge-popup" class="educate-popup">
+    <div class="popup_educate">
+        <h2>Components in Refrigerators and Air Conditioners</h2>
+        <a class="close_popup" href="#" onclick="closePopup('fridge-popup')">&times;</a>
                 <div class="popup_body">
                     <div class="content">
                         <div class="component">
@@ -685,11 +699,13 @@
                 </div>
             </div>
         </div>
-        <div id="old" class="educate-popup">
-            <div class="popup_educate">
-                <h2>Components in old electronics</h2>
-                <a class="close_popup" href="#">&times;</a>
-                <div class="popup_body">
+		
+		
+        <div id="old-popup" class="educate-popup">
+    <div class="popup_educate">
+        <h2>Components in Older Electronics</h2>
+        <a class="close_popup" href="#" onclick="closePopup('old-popup')">&times;</a>
+        <div class="popup_body">
                     <div class="content">
                         <div class="component">
                             <h2>Heavy Metals</h2>
@@ -719,10 +735,12 @@
                 </div>
             </div>
         </div>
-        <div id="tv" class="educate-popup">
-            <div class="popup_educate">
-                <h2>Components in Monitors and TV</h2>
-                <a class="close_popup" href="#">&times;</a>
+		
+		
+       <div id="tv-popup" class="educate-popup">
+    <div class="popup_educate">
+        <h2>Components in Monitors and TVs</h2>
+        <a class="close_popup" href="#" onclick="closePopup('tv-popup')">&times;</a>
                 <div class="popup_body">
                     <div class="content">
                     <!-- Monitors and TVs -->
@@ -1033,8 +1051,143 @@ var mgitLocation = { name: "Facility 2", latlng: [17.453628079305627, 78.3405779
 <!--map script ends-->
 
 
+<!-- pop for laptop-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const popupTrigger = document.querySelector('.cat-item');
+    const popup = document.querySelector('.educate-popup');
+    const closePopup = document.querySelector('.close_popup');
+	
 
-    
+    // Function to show the popup
+    const showPopup = function (e) {
+        e.preventDefault(); // Prevent default link behavior (page refresh)
+        popup.style.display = 'block';
+    };
+
+    // Function to hide the popup
+    const hidePopup = function (e) {
+        e.preventDefault(); // Prevent default link behavior (page refresh)
+        popup.style.display = 'none';
+    };
+
+    // Show popup when category item is clicked
+    popupTrigger.addEventListener('click', showPopup);
+
+    // Hide popup when close button is clicked
+    closePopup.addEventListener('click', hidePopup);
+
+    // Hide popup when clicking outside the popup content
+    window.addEventListener('click', function (e) {
+        if (e.target === popup) {
+            hidePopup(e);
+        }
+    });
+});
+
+
+// Function to open the smartphone popup
+function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = 'block';
+    }
+}
+
+// Function to close the popup
+function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = 'none';
+    }
+    // Prevent default behavior of the click event
+    event.preventDefault();
+}
+
+
+// Function to open the computer popup
+function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = 'block';
+    }
+}
+
+// Function to close the popup
+function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = 'none';
+    }
+    // Prevent default behavior of the click event
+    event.preventDefault();
+}
+
+
+// Function to open the battery popup
+function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = 'block';
+    }
+}
+
+// Function to close the popup
+function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = 'none';
+    }
+    // Prevent default behavior of the click event
+    event.preventDefault();
+}
+
+
+ </script>
+
+<script>
+    // Function to open the popup
+    function openPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'block';
+        }
+        // Prevent default behavior of the click event
+        event.preventDefault();
+    }
+
+    // Function to close the popup
+    function closePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'none';
+        }
+        // Prevent default behavior of the click event
+        event.preventDefault();
+    }
+</script> 
+
+<script>
+    // Function to open the popup
+    function openPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'block';
+        }
+        // Prevent default behavior of the click event
+        event.preventDefault();
+    }
+
+    // Function to close the popup
+    function closePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'none';
+        }
+        // Prevent default behavior of the click event
+        event.preventDefault();
+    }
+</script>
       
 </body>
 
