@@ -960,7 +960,7 @@
 </script>
 
 <script>
-var mgitLocation = { name: "MGIT", latlng: [17.39200505656184, 78.32258422460308], contact: "91********", email: "mgit@locator.com" };
+var mgitLocation = { name: "Facility 1", latlng: [17.433321078427046, 78.3847636454859], contact: "91********", email: "mgit@locator.com" };
 
     // Add MGIT location marker
     var mgitMarker = L.marker(mgitLocation.latlng).addTo(map);
@@ -1015,6 +1015,25 @@ var mgitLocation = { name: "MGIT", latlng: [17.39200505656184, 78.32258422460308
         });
         
     </script>
+<script>
+var mgitLocation = { name: "Facility 2", latlng: [17.453628079305627, 78.34057794096586], contact: "91********", email: "mgit@locator.com" };
+
+    // Add MGIT location marker
+    var mgitMarker = L.marker(mgitLocation.latlng).addTo(map);
+    
+    // Define popup content for MGIT location
+    var mgitPopupContent = "<b>Name:</b> " + mgitLocation.name + "<br><b>Contact:</b> " + mgitLocation.contact + "<br><b>Email:</b> " + mgitLocation.email;
+
+    // Create a tooltip for MGIT location
+    mgitMarker.bindTooltip(mgitPopupContent, {
+        permanent: true,
+        direction: 'top'
+    }).openTooltip();
+	</script>
+<!--map script ends-->
+
+
+
     
       
 </body>
