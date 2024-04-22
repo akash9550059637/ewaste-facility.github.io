@@ -93,7 +93,13 @@ app.post('/EwasteRequest', (req, res) => {
     newRequest.save()
         .then(savedRequest => {
             console.log('E-waste request saved successfully:', savedRequest);
-            res.status(201).send('E-waste request saved successfully');
+            // Send a success response with a pop-up message
+            res.status(201).send(`
+                <script>
+                    alert('E-waste request saved successfully. Pickup request has been sent.');
+                    window.location.href = 'https://akash9550059637.github.io/ewaste-facility.github.io/user-home.html';
+                </script>
+            `);
         })
         .catch(error => {
             console.error('Error saving e-waste request:', error);
