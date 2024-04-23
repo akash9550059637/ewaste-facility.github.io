@@ -269,6 +269,16 @@ app.get("/user-data", verifyToken, (req, res) => {
         });
 });
 
+app.get('/requests', async (req, res) => {
+    try {
+        const users = ["user1@gmail.com", "user2@gmail.com"]; // List of users
+        const requests = await Request.find({ email: { $in: users } });
+        res.json(requests);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching requests' });
+    }
+});
+
 
 // Start the server
 app.listen(port, () => {
