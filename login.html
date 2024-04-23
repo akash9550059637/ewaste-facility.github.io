@@ -73,7 +73,11 @@
           <div class="col-md-6 offset-md-3">
             <div class="login_container">
               <h2>User Login</h2>
+<<<<<<< HEAD
               <form action="user-index.html">
+=======
+              
+>>>>>>> 8ba53fcde7cb645450f799c4bbea5da6a6699f77
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Username" required="" name="email">
                 </div>
@@ -81,10 +85,10 @@
                   <input type="password" class="form-control" placeholder="Password" required="" name="password">
                 </div>
                 <div class="d-flex justify-content-between">
-                  <button type="submit">Submit</button>
+                  <button id="submitBtn" type="submit">Submit</button>
                   <a href="register.html" class="btn btn-link">Don't have an account yet? Create one.</a>
                 </div>
-              </form>
+             
             </div>
           </div>
         </div>
@@ -107,7 +111,12 @@
 
   <script src="jquery-3.4.1.min.js"></script>
   <script src="bootstrap.js"></script>
-
+<script>
+document.getElementById("submitBtn").addEventListener("click", function() {
+    // Redirect to the new HTML page
+    window.location.href = "user-home.html";
+});
+</script>
 
 </body>
 
