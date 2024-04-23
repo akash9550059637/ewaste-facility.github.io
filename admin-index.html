@@ -163,7 +163,7 @@
         <a class="nav-link" href="#services">Services</a>
                 </li>
          <li class="nav-item">
-        <a class="nav-link" href="index.html">Logout</a>
+        <a class="nav-link" href="#services">Logout</a>
                 </li>
               </ul>
         
@@ -253,7 +253,7 @@ your dedication to sustainability not only saves the environment, but also shape
  <div id="e-waste-popup">
     <button id="close-button">Close</button>
     <h2>Facility Details</h2>
-    <form id="ewaste-form">
+    <form id="ewaste-form" action="http://localhost:3001/facilityDetails" method="post">
         <div>
       <label for="email">Email:</label>
       <input name="email" type="email" id="email" required>
@@ -277,7 +277,7 @@ your dedication to sustainability not only saves the environment, but also shape
         <div id="coordinates-container"></div>
         <div class="map-container" id="mapbox-map"></div>
         <br>
-        <button id="submitBtn" type="submit" id="submit-button">Submit</button>
+        <button type="submit" id="submit-button">Submit</button>
     </form>
 </div>
 
@@ -302,24 +302,24 @@ your dedication to sustainability not only saves the environment, but also shape
             background-color: #f2f2f2;
         }
     </style>
-<section class="feature_section">
-        <div class="container">
-		<button id="refresh-btn">Refresh</button>
-            <table id="requests-table">
-                <thead>
-                    <tr>
-                        <th>Requests</th>
-                        <th>Schedule</th>
-                        <th>Status Update</th>
-                    </tr>
-                </thead>
-                <tbody id="requests-body">
-                    <!-- Table body will be populated dynamically -->
-                </tbody>
-            </table>
-            
-        </div>
-    </section>
+<table>
+        <tr>
+            <th>Requests</th>
+            <th>Schedule</th>
+            <th>Status Update</th>
+        </tr>
+        <tr>
+            <td>Request 1</td>
+            <td>Date: <input type="date"> Time: <input type="time"></td>
+            <td>Status: Done</td>
+        </tr>
+        <tr>
+            <td>Request 2</td>
+            <td>Date: <input type="date"> Time: <input type="time"></td>
+            <td>Status: Not done</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
 </div>
 </section>
 <!-- end of requests table-->
@@ -419,62 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<<<<<<< HEAD
 
-
-
-<script>
-    // Function to fetch data from server and update table
-    function updateTable() {
-        fetch('/requests')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const tableBody = document.getElementById('requests-body');
-                tableBody.innerHTML = ''; // Clear existing rows
-                if (data.length === 0) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `<td colspan="3">No Requests</td>`;
-                    tableBody.appendChild(row);
-                } else {
-                    data.forEach(request => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${request.email}</td>
-                            <td>Date: <input type="date"> Time: <input type="time"></td>
-                            <td>Status: ${request.status}</td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                }
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }
-
-    // Event listener for refresh button click
-    document.getElementById('refresh-btn').addEventListener('click', updateTable);
-
-    // Initial table update when page loads
-    updateTable();
-</script>
-
-=======
- <script>
-document.getElementById("submitBtn").addEventListener("click", function() {
-    // Display a success message
-    alert("Facility details updated successfully.");
-    
-    // Redirect to the new HTML page after a delay (in this case, 3 seconds)
-    setTimeout(function() {
-        window.location.href = "admin-index.html";
-    }, 3000); // 3000 milliseconds = 3 seconds
-});
-</script>
->>>>>>> 8ba53fcde7cb645450f799c4bbea5da6a6699f77
 </body>
 
 </html>
