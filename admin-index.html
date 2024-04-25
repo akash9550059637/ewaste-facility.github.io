@@ -304,7 +304,7 @@ your dedication to sustainability not only saves the environment, but also shape
         input[type="date"], input[type="time"] {
             width: auto;
         }
-        .status-button {
+        .status-button, .locate-button {
             cursor: pointer;
             padding: 5px 10px;
             border: none;
@@ -319,6 +319,9 @@ your dedication to sustainability not only saves the environment, but also shape
         .status-green {
             background-color: green;
         }
+        .locate-button {
+            background-color: #007bff;
+        }
     </style>
  <table>
         <tr>
@@ -329,6 +332,7 @@ your dedication to sustainability not only saves the environment, but also shape
             <th>Additional Information</th>
             <th>Location</th>
             <th>Status Update</th>
+            <th>Locate</th>
         </tr>
         <tr>
             <td>Request 1</td>
@@ -342,6 +346,9 @@ your dedication to sustainability not only saves the environment, but also shape
             <td>
                 <button id="button1" class="status-button status-grey" onclick="confirmSchedule('Request 1')">Confirm</button>
             </td>
+            <td>
+                <button class="locate-button" onclick="openLocation('Location A')">Locate</button>
+            </td>
         </tr>
         <tr>
             <td>Request 2</td>
@@ -354,6 +361,9 @@ your dedication to sustainability not only saves the environment, but also shape
             <td>Location B</td>
             <td>
                 <button id="button2" class="status-button status-grey" onclick="confirmSchedule('Request 2')">Confirm</button>
+            </td>
+            <td>
+                <button class="locate-button" onclick="openLocation('Location B')">Locate</button>
             </td>
         </tr>
         <!-- Add more rows as needed -->
@@ -458,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
- <script>
+<script>
         function confirmSchedule(requestName) {
             const dateInput = document.getElementById(`date${requestName.split(' ')[1]}`);
             const timeInput = document.getElementById(`time${requestName.split(' ')[1]}`);
@@ -476,8 +486,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please select a date and time to schedule.');
             }
         }
-    </script>
 
+        function openLocation(locationName) {
+            let locationUrl;
+
+            // Generate URL based on location name
+            switch (locationName) {
+                case 'Location A':
+                    locationUrl = 'https://maps.app.goo.gl/vtLEKqJGBYsUB3HN8';
+                    break;
+                case 'Location B':
+                    locationUrl = 'https://maps.app.goo.gl/Wtq685C9wRMK8zJf6';
+                    break;
+                // Add more cases for additional locations as needed
+                default:
+                    locationUrl = 'https://www.example.com'; // Default URL
+                    break;
+            }
+
+            // Open location URL in a new tab
+            window.open(locationUrl, '_blank');
+        }
+    </script>
 </body>
 
 </html>
